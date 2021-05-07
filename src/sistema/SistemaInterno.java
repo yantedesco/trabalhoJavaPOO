@@ -19,14 +19,9 @@ public class SistemaInterno {
 	// menu principal
 	public void menuPrincipal(Usuario usuario) {
             //String nome, int id, String cpf, String tipo, String senha, int agencia
-                Usuario user1 = new Gerente("Yan Tedesco", 01, "11122233344", "Gerente", "tedesco", 01);
-                Usuario user2 = new Gerente("Igor Stumpf", 02, "11122233355", "Gerente", "stumpf", 02);
-                Usuario user3 = new Gerente("Marcos Bet", 03, "11122233366", "Gerente", "bet", 03);
-                Usuario user4 = new Gerente("Brayan Cataldo", 04, "11122233377", "Gerente", "cataldo", 04);
-                Usuario user5 = new Gerente("Lucas Azevedo", 05, "11122233388", "Gerente", "azevedo", 05);
-                Usuario user6 = new Gerente("Ricardo Araujo", 06, "11122233399", "Gerente", "araujo", 06);
+               
                 Set<Usuario> listaUsuarios = new TreeSet<>(Comparador());
-                listaUsuarios
+               
 		//condicional enum
 
 
