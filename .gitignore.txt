@@ -1,4 +1,0 @@
-nbbuild
-nbproject
-build
-.gitignore
