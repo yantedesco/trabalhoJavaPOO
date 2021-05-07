@@ -8,7 +8,7 @@ public class SeguroDeVida extends Conta {
 		double novoSaldo;
 		if (seguroDeVida){
 			this.tributoSeguro = (valorSegurado * 0.2);
-			novoSaldo = super.getSaldo() + (valorSegurado * 0.8);
+			novoSaldo = super.getSaldo() - this.tributoSeguro;
 			super.setSaldo(novoSaldo);
 			return true;
 		}
