@@ -4,7 +4,7 @@ package sistema;
 import Users.Usuario;
 import banco.Conta;
 
-import javax.xml.crypto.Data;
+//import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.Scanner;
 import java.util.TreeSet;
@@ -19,6 +19,20 @@ public class SistemaInterno {
 	// menu principal
 	public void menuPrincipal(Usuario usuario) {
             //String nome, int id, String cpf, String tipo, String senha, int agencia
+                
+                menuLogin(); 
+                Usuario u = Iterator.next();
+                if (u instanceof Gerente){
+                     // é um gerente
+                }
+                   
+                if (u instanceof Cliente){
+                       // é um cliente
+
+                }
+                if (u instanceof Presidente){
+                    
+                } 
                
                 Set<Usuario> listaUsuarios = new TreeSet<>(Comparador());
                
@@ -379,7 +393,7 @@ public class SistemaInterno {
 
 	public Usuario menuLogin() {
 		Scanner sc = new Scanner(System.in); //Entrada no console
-		TreeSet<Usuario> listaUsuarios = Data.getData().getListaUsuarios(); //Pegar a TreeSet de Data
+		//TreeSet<Usuario> listaUsuarios = Data.getData().getListaUsuarios(); //Pegar a TreeSet de Data
 		Conta conta = Conta.getInstance(); //Pegar a instância de Conta
 		File file = File.getFile(); //Pegar o arquivo de Arquivo
 		//Login menu
@@ -393,7 +407,7 @@ public class SistemaInterno {
 			System.out.print("\n");
 			System.out.print("\n");
 			listaUsuarios = File.ReadFromFile(); //Get the container from the file
-			Data.getData().setHolder(listaUsuarios); //Store the container obtained from the file into the database
+			//Data.getData().setHolder(listaUsuarios); //Store the container obtained from the file into the database
 
 
 			int opcao = 1; //Get number from keyboard
