@@ -13,7 +13,7 @@ package banco;
     private double tarifa = 15;
     protected double taxaMovimentacao=0.10;
     
-    public Conta() {}
+    public Conta() {      }
     
     
     

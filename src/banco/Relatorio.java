@@ -6,7 +6,7 @@ public class Relatorio extends Conta {
 	private static double valorSimulado;
 	
 	
-	public Relatorio() {}
+	public Relatorio() {           }
 	
 	
 	
