@@ -1,6 +1,7 @@
 
 package banco;
 
+import exceptions.ContaException;
 
 	public abstract class Conta {
 	
@@ -122,15 +123,19 @@ package banco;
 		return numeroDaConta;
 	}
 
-	public void setNumeroDaConta(int numeroDaConta) {
-		this.numeroDaConta = numeroDaConta;
+	public void setNumeroDaConta(int numeroDaConta) throws ContaException {
+		if(numeroDaConta<=0)
+			throw new ContaException("Numero da conta não pode ser negativo ou igual a zero");
+			this.numeroDaConta = numeroDaConta;
 	}
 
 	public String getNomeCompletoCliente() {
 		return nomeCompletoCliente;
 	}
 
-	public void setNomeCompletoCliente(String nomeCompletoCliente) {
+	public void setNomeCompletoCliente(String nomeCompletoCliente) throws ContaException {
+		if(nomeCompletoCliente == null)
+		throw new ContaException("Nome completo não pode ser nulo. Favor preencher o campo corretamente");
 		this.nomeCompletoCliente = nomeCompletoCliente;
 	}
 
@@ -138,7 +143,9 @@ package banco;
 		return cpfTitular;
 	}
 
-	public void setCpfTitular(String cpfTitular) {
+	public void setCpfTitular(String cpfTitular) throws ContaException {
+		if(cpfTitular == null)
+		throw new ContaException("CPF não pode ser nulo. Favor preencher todos os campos");
 		this.cpfTitular = cpfTitular;
 	}
 
@@ -154,11 +161,13 @@ package banco;
 		return agencia;
 	}
 
-	public void setAgencia(int agencia) {
+	public void setAgencia(int agencia) throws ContaException {
+		if(agencia<=0)
+		throw new ContaException("Numero da agencia não pode ser negativo ou igual a zero");
 		this.agencia = agencia;
 	}
     
-    
+  
     
     
 }

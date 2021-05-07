@@ -20,5 +20,4 @@ public abstract class Funcionario extends Usuario{
 		this.salario = salario;
 	}
 
-	
 }
