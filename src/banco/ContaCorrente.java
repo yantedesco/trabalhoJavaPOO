@@ -4,9 +4,9 @@ package banco;
 public class ContaCorrente extends Conta {
     
     private int tipoConta;
-    private double investimento;
-    private double tarifa;
-	
+    
+   
+    
 	
 	public ContaCorrente() {  }
 	
@@ -16,8 +16,8 @@ public class ContaCorrente extends Conta {
 		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia);
 		
 		this.tipoConta=tipoConta;
-		this.investimento=investimento;
-	    this.tarifa=tarifa;
+		
+	    
 	}
 
 
@@ -34,35 +34,18 @@ public class ContaCorrente extends Conta {
 
 
 
-	public double getInvestimento() {
-		return investimento;
-	}
-
-
-
-	public void setInvestimento(double investimento) {
-		this.investimento = investimento;
-	}
-
-
-
-	public double getTarifa() {
-		return tarifa;
-	}
-
-
-
-	public void setTarifa(double tarifa) {
-		this.tarifa = tarifa;
-	}
 
 
 
 	@Override
 	public String toString() {
-		return "ContaCorrente \n\n"+"Tipo Conta= " + tipoConta +  "   , Numero da Conta =  " + getNumeroDaConta() + "  , Agencia= " + getAgencia()
-		+"   , Nome Completo do Cliente=   "+ getNomeCompletoCliente() +   "  , CPF   do  Titular= " + getCpfTitular() + 
-		" , Investimentos=  " + investimento + ", tarifa=" + tarifa	+ "\n\n";
+		return "Conta Corrente \n\n"+
+				"Tipo Conta= " + tipoConta +  
+				"  , Numero da Conta =  " + getNumeroDaConta() + 
+				"  , Agencia= " + getAgencia()+
+				"  , Nome Completo do Cliente=   "+ getNomeCompletoCliente() +   
+				"  , CPF   do  Titular= " + getCpfTitular() + 
+		        "  , Saldo da Conta corrente= R$"+ getSaldo() + "\n\n";
 	}
 	
 	
