@@ -4,13 +4,10 @@ package sistema;
 import Users.Usuario;
 import banco.Conta;
 
-//import javax.xml.crypto.Data;
 import java.io.File;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
-import java.util.Set;
-import java.util.Iterator;
-import Users.Gerente;
 
 public class SistemaInterno {
 
@@ -19,23 +16,7 @@ public class SistemaInterno {
 	// menu principal
 	public void menuPrincipal(Usuario usuario) {
             //String nome, int id, String cpf, String tipo, String senha, int agencia
-                
-                menuLogin(); 
-                Usuario u = Iterator.next();
-                if (u instanceof Gerente){
-                     // é um gerente
-                }
-                   
-                if (u instanceof Cliente){
-                       // é um cliente
-
-                }
-                if (u instanceof Presidente){
-                    
-                } 
-               
-                Set<Usuario> listaUsuarios = new TreeSet<>(Comparador());
-               
+                menuLogin();
 		//condicional enum
 
 
