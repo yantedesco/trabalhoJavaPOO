@@ -3,8 +3,8 @@ package Users;
 
 
 public abstract class Funcionario extends Usuario{
-	double salario;
-    private String cargo;
+	private double salario;
+    
     
     public Funcionario() {}
     
@@ -25,12 +25,5 @@ public abstract class Funcionario extends Usuario{
 		this.salario = salario;
 	}
 
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
+	
 }
