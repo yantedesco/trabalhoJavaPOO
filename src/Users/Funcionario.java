@@ -1,4 +1,3 @@
-
 package Users;
 
 
@@ -8,13 +7,9 @@ public abstract class Funcionario extends Usuario{
     
     public Funcionario() {}
     
-	public Funcionario(String nome, int id, String cpf, String tipo, String senha, int agencia) {
-		this.nome = nome;
-		this.id = id;
-		this.cpf = cpf;
-		this.tipo = tipo;
-		this.senha = senha;
-		this.agencia = agencia;	
+	public Funcionario(String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario) {
+		super(nome, id, cpf, tipo, senha, agencia, numeroConta);
+		this.salario = salario;
 	}
 
 	public double getSalario() {

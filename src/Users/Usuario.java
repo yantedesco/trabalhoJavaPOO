@@ -1,12 +1,26 @@
 package Users;
 
+
 public abstract class Usuario {
 	protected String nome;
-	protected int id;
-	protected String cpf;
-	protected String tipo;
-	protected String senha;
-	protected int agencia;
+	private int id;
+	private String cpf;
+	private String tipo;
+	private String senha;
+	private int agencia;
+	private int numeroConta;
+	
+	public Usuario () {}
+	
+	public Usuario (String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta) {
+		this.nome = nome;
+		this.id = id;
+		this.cpf = cpf;
+		this.tipo = tipo;
+		this.senha = senha;
+		this.agencia = agencia;
+		this.numeroConta = numeroConta;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -45,4 +59,13 @@ public abstract class Usuario {
 		this.agencia = agencia;
 	}
 
+	public int getNumeroConta() {
+		return numeroConta;
+	}
+
+	public void setNumeroConta(int numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+	
+	
 }
