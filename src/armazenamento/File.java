@@ -5,12 +5,15 @@ package armazenamento;
 import Users.Cliente;
 import Users.Diretor;
 import Users.Usuario;
+import banco.Conta;
 import banco.ContaCorrente;
 import banco.ContaPoupanca;
 import enumm.ContaTipoEnum;
 import enumm.UsuarioTipoEnum;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -20,7 +23,16 @@ public class File {
         static final String PATH_BASICO = "./temp/";
         static final String EXTENSAO = ".txt";
 
-        public static void leitor(String path) throws IOException {
+        static Map<Usuario, String> map = new HashMap<>();
+
+        public static Map<Usuario, String> getMap() {
+            return map;
+        }
+
+        public static Map<Usuario, String> hashMapFromFileText(String path) {
+
+
+            Map<Conta, String> mapConta = new HashMap<>();
 
             try {
                 BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
@@ -33,20 +45,26 @@ public class File {
                         if(pp[0].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
                             ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), Integer.parseInt(pp[5]), Double.parseDouble(pp[6]), Double.parseDouble(pp[7]));
                             System.out.println(cc);
+                            mapConta.put(cc, "corrente");
                         }
                         else if(pp[0].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
                             ContaPoupanca cp = new ContaPoupanca(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
                             System.out.println(cp);
+                            mapConta.put(cp, "poupanca");
                         }
                         else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.DIRETOR.getTipo())) {
                             Diretor d = new Diretor(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]),Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
                             System.out.println(d);
+                            String cpf = pp[2];
+                            map.put(d, cpf);
                         }
                         else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
                             //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
                             Cliente cli = new Cliente(pp[0], Integer.parseInt(pp[1]),pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]));
                             //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
                             System.out.println(cli);
+                            String cpf = pp[4];
+                            map.put(cli, cpf);
                             File.comprovanteDeposito(PATH_BASICO+cli.getNome()+"_"+cli.getCpf()+EXTENSAO, cli, cli.getNumeroConta(), 1250.00);
                         }
 
@@ -55,9 +73,10 @@ public class File {
                 }
                 buffRead.close();
             }
-            catch (FileNotFoundException e) {
-                System.out.println("Arquivo não encontrado no path informado: " + PATH_BASICO+path);
+            catch (Exception e) {
+                e.printStackTrace();
             }
+            return map;
         }
 
         public static void escritor(String path) throws IOException {
@@ -95,4 +114,12 @@ public class File {
             buffWrite.close();
         }
 
+
+    public static String getPathBasico() {
+        return PATH_BASICO;
     }
+
+    public static String getEXTENSAO() {
+        return EXTENSAO;
+    }
+}

@@ -2,8 +2,6 @@
 package sistema;
 
 
-
-
 public class Principal {
     public static void main(String[] args) {
         
@@ -11,7 +9,7 @@ public class Principal {
         sistema.menuPrincipal();
         
         //Olá
-        
+
         
         
     }
