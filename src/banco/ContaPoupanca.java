@@ -39,13 +39,12 @@ public class ContaPoupanca extends Conta{
 
 	@Override
     public String toString() {
-        return "ContaPoupanca{" +
-                "numeroDaConta=" + getNumeroDaConta() +
-                ", nomeCompletoCliente='" + getNomeCompletoCliente() + '\'' +
-                ", cpfTitular='" + getCpfTitular() + '\'' +
-                ", saldo=" + getSaldo() +
-                ", agencia=" + getAgencia() +
-                '}';
+        return "Conta Poupança: \nTipo Conta: " + tipoConta +  
+				"\nNumero da Conta =  " + getNumeroDaConta() + 
+				"\nAgencia= " + getAgencia()+
+				"\nNome Completo do Cliente=   "+ getNomeCompletoCliente() +   
+				"\nCPF   do  Titular= " + getCpfTitular() + 
+		        "\nSaldo da Conta poupança= R$"+ getSaldo() + "\n";
     }
 }
 

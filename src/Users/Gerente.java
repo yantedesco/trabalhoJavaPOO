@@ -22,17 +22,15 @@ public class Gerente extends Funcionario {
 
 	@Override
 	public String toString() {
-		return "Gerente{" +
-				"nome='" + getNome() + '\'' +
-				", salario=" + getSalario() +
-				", idAgencia=" + idAgencia +
-				", nome='" + nome + '\'' +
-				", id=" + getId() +
-				", cpf='" + getCpf() + '\'' +
-				", tipo='" + getTipo() + '\'' +
-				", senha='" + getSenha() + '\'' +
-				", agencia=" + getAgencia() +
-				", numeroConta=" + getNumeroConta() +
-				'}';
+		return "Gerente: \nNome: " + getNome() +	
+				"\nSalario: " + getSalario() +
+				"\nIdAgencia: " + idAgencia +
+				"\nNome: " + nome +
+				"\nId: " + getId() +
+				"\nCPF: " + getCpf() +
+				"\nTipo: " + getTipo() +
+				"\nSenha: " + getSenha() +
+				"\nAgencia: " + getAgencia() +
+				"\nNumeroConta: " + getNumeroConta() +"\n";
 	}
 }

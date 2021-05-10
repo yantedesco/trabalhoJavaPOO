@@ -3,7 +3,7 @@ package banco;
 
 public class ContaCorrente extends Conta {
     
-    private int tipoConta;
+    private String tipoConta;
     
    
     
@@ -12,7 +12,7 @@ public class ContaCorrente extends Conta {
 	
 	   
 	
-	public ContaCorrente(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,int tipoConta,double investimento,double tarifa) {
+	public ContaCorrente(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta,double investimento,double tarifa) {
 		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia);
 		
 		this.tipoConta=tipoConta;
@@ -22,13 +22,13 @@ public class ContaCorrente extends Conta {
 
 
 
-	public int getTipoConta() {
+	public String getTipoConta() {
 		return tipoConta;
 	}
 
 
 
-	public void setTipoConta(int tipoConta) {
+	public void setTipoConta(String tipoConta) {
 		this.tipoConta = tipoConta;
 	}
 
@@ -39,13 +39,12 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public String toString() {
-		return "Conta Corrente \n\n"+
-				"Tipo Conta= " + tipoConta +  
-				"  , Numero da Conta =  " + getNumeroDaConta() + 
-				"  , Agencia= " + getAgencia()+
-				"  , Nome Completo do Cliente=   "+ getNomeCompletoCliente() +   
-				"  , CPF   do  Titular= " + getCpfTitular() + 
-		        "  , Saldo da Conta corrente= R$"+ getSaldo() + "\n\n";
+		return "Conta Corrente: \nTipo Conta: " + tipoConta +  
+				"\nNumero da Conta =  " + getNumeroDaConta() + 
+				"\nAgencia= " + getAgencia()+
+				"\nNome Completo do Cliente=   "+ getNomeCompletoCliente() +   
+				"\nCPF   do  Titular= " + getCpfTitular() + 
+		        "\nSaldo da Conta corrente= R$"+ getSaldo() + "\n";
 	}
 	
 	

@@ -47,13 +47,14 @@ import exceptions.ContaException;
     	
        else if(this.saldo < valor) {
 			
-			System.out.println("Seu saldo é insuficiente!!!!");
+			System.out.println("Seu saldo é insuficiente!!!");
 			return false;
 		}
 		else {
 			totalMovimentacoes++;
 			this.saldo = this.saldo - valor;
 			this.saldo= this.saldo - taxaMovimentacao;    // taxa cobrada por saque
+			System.out.println("Saque realizado com sucesso!!!");
 			return true;
 		}
 	}
@@ -71,6 +72,7 @@ import exceptions.ContaException;
 			
 			destino.depositar(valor);
 		 
+			System.out.println("Transferência realizada com sucesso!!!");
 			return true;
 		} 
 		else {
@@ -88,7 +90,7 @@ import exceptions.ContaException;
 	public double depositar(double valor) {
 		totalMovimentacoes++;
 		if(valor<=0) {
-			System.out.println("Deposito co envelope vazio é proibido !!!"+ valor);
+			System.out.println("Deposito com envelope vazio é proibido !!!"+ valor);
 			System.out.println("Depositos vazios geram despesas e convencionalmente será cobrado tarifa de deposito");
 			return this.saldo - taxaMovimentacao;
 			}
@@ -96,6 +98,7 @@ import exceptions.ContaException;
 		
 		this.saldo = this.saldo + valor;
 		this.saldo= this.saldo -taxaMovimentacao;  // taxa cobrada por deposito
+		System.out.println("Depósito realizado com sucesso!!!");
 		return this.saldo;
 		
 		}
@@ -167,7 +170,7 @@ import exceptions.ContaException;
 		this.agencia = agencia;
 	}
     
-        
+  
     
     
 }

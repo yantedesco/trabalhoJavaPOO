@@ -11,16 +11,15 @@ public class Presidente extends Funcionario {
 
     @Override
     public String toString() {
-        return "Presidente{" +
-                "salario=" + getSalario() +
-                ", nome='" + nome + '\'' +
-                ", nome='" + getNome() + '\'' +
-                ", id=" + getId() +
-                ", cpf='" + getCpf() + '\'' +
-                ", tipo='" + getTipo() + '\'' +
-                ", senha='" + getSenha() + '\'' +
-                ", agencia=" + getAgencia() +
-                ", numeroConta=" + getNumeroConta() +
-                '}';
+        return "Presidente: \nNome: " + nome +
+                "\nSalario: " + getSalario() +
+                "\nNome: " + getNome() +
+                "\nId: " + getId() +
+                "\nCPF: " + getCpf() +
+                "\nTipo: " + getTipo() +
+                "\nSenha: " + getSenha() +
+                "\nAgencia: " + getAgencia() +
+                "\nNumeroConta: " + getNumeroConta() +"\n";
+        
     }
 }

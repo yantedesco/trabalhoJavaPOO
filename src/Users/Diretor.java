@@ -11,16 +11,14 @@ public class Diretor extends Funcionario{
 
     @Override
     public String toString() {
-        return "Diretor{" +
-                "nome='" + nome + '\'' +
-                ", salario=" + getSalario() +
-                ", nome='" + getNome() + '\'' +
-                ", id=" + getId() +
-                ", cpf='" + getCpf() + '\'' +
-                ", tipo='" + getTipo() + '\'' +
-                ", senha='" + getSenha() + '\'' +
-                ", agencia=" + getAgencia() +
-                ", numeroConta=" + getNumeroConta() +
-                '}';
+        return "Diretor: \n[Nome: " + nome +
+                "\nSalario: " + getSalario() +
+                "\nNome: " + getNome() +
+                "\nId: " + getId() +
+                "\nCPF: " + getCpf() +
+                "\nTipo: " + getTipo() +
+                "\nSenha: " + getSenha() +
+                "\nAgencia: " + getAgencia() +
+                "\nNumeroConta: " + getNumeroConta() +"\n";
     }
 }
