@@ -9,4 +9,18 @@ public class Presidente extends Funcionario {
     	super(nome, id, cpf, tipo, senha, agencia, numeroConta, salario);
     }
 
+    @Override
+    public String toString() {
+        return "Presidente{" +
+                "salario=" + getSalario() +
+                ", nome='" + nome + '\'' +
+                ", nome='" + getNome() + '\'' +
+                ", id=" + getId() +
+                ", cpf='" + getCpf() + '\'' +
+                ", tipo='" + getTipo() + '\'' +
+                ", senha='" + getSenha() + '\'' +
+                ", agencia=" + getAgencia() +
+                ", numeroConta=" + getNumeroConta() +
+                '}';
+    }
 }

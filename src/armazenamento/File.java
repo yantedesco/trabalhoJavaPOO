@@ -36,12 +36,13 @@ public class File {
         return mapConta;
     }
 
-    public static Map<String, Usuario> hashMapFromFileTextUsuario(String path) {
+    public static void hashMapFromFileTextUsuario(String path) {
+
 
 
 
             try {
-                BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
+                BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+ "lista" +EXTENSAO));
                 String linha = "";
 
                 while (true) {
@@ -49,28 +50,27 @@ public class File {
                     if (linha != null) {
                         String[] pp = linha.split(";");
                         
-                        if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.DIRETOR.getTipo())) {
+                        if(pp[3].equalsIgnoreCase(UsuarioTipoEnum.DIRETOR.getTipo())) {
                             Diretor d = new Diretor(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]),Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
-                            System.out.println(d);
                             String cpf = pp[2];
                             mapUsuario.put(cpf, d);
+                            //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario
                         }
-                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
-                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
+                        else if(pp[3].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
                             Cliente cli = new Cliente(pp[0], Integer.parseInt(pp[1]),pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]));
-                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
-                            System.out.println(cli);
-                            String cpf = pp[4];
+                            String cpf = pp[2];
                             mapUsuario.put(cpf, cli);
-                            File.comprovanteDeposito(PATH_BASICO+cli.getNome()+"_"+cli.getCpf()+EXTENSAO, cli, cli.getNumeroConta(), 1250.00);
                         }
-                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.GERENTE.getTipo())){
+                        else if(pp[3].equalsIgnoreCase(UsuarioTipoEnum.GERENTE.getTipo())){
                             Gerente ger = new Gerente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]), Double.parseDouble(pp[7]),Integer.parseInt(pp[8]));
                             //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario, int idAgencia
+                            String cpf = pp[2];
+                            mapUsuario.put(cpf, ger);
                         }
-                        else if (pp[0].equalsIgnoreCase(UsuarioTipoEnum.PRESIDENTE.getTipo())){
+                        else if (pp[3].equalsIgnoreCase(UsuarioTipoEnum.PRESIDENTE.getTipo())){
                             Presidente pre = new Presidente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
                             //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario
+
                             String cpf = pp[2];
                             mapUsuario.put(cpf, pre);
                         }    
@@ -84,8 +84,7 @@ public class File {
             catch (Exception e) {
                 e.printStackTrace();
             }
-            return mapUsuario;
-        }
+    }
          public static Map<String, Conta> hashMapFromFileTextContas(String path){
             try {
                     BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));

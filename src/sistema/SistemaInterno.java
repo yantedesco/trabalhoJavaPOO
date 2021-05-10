@@ -416,16 +416,15 @@ public class SistemaInterno {
                         System.out.print("\n");
                         System.out.print("Quase lá, você será redirecionado...");
                         System.out.print("\n");
-                        File.hashMapFromFileTextUsuario(File.getPathBasico() +
-                                usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
 
-                        if (File.getMapUsuario().containsKey("diretor")) {
+
+                        if (usuario.getTipo().equalsIgnoreCase("diretor")) {
                             menuDiretor();
-                        } else if (File.getMapUsuario().containsKey("cliente")) {
+                        } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
                             menuCliente();
-                        } else if (File.getMapUsuario().containsKey("presidente")) {
+                        } else if (usuario.getTipo().equalsIgnoreCase("presidente")) {
                             menuPresidente();
-                        } else if (File.getMapUsuario().containsKey("gerente")) {
+                        } else if (usuario.getTipo().equalsIgnoreCase("gerente")) {
                             menuGerente();
                         }
 

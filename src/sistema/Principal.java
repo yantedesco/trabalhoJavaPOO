@@ -2,7 +2,6 @@
 package sistema;
 
 
-import Users.Usuario;
 import armazenamento.File;
 
 public class Principal {
@@ -13,8 +12,10 @@ public class Principal {
 
         SistemaInterno sistema = new SistemaInterno();
 
+        File.hashMapFromFileTextUsuario(File.getPathBasico() +
+                "text"+ File.getEXTENSAO());
+       // sistema.menuPrincipal();
         sistema.menuPrincipal();
-
         //Olá
 
 

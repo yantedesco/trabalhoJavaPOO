@@ -19,6 +19,20 @@ public class Gerente extends Funcionario {
 		public void setIdAgencia(int idAgencia) {
 			this.idAgencia = idAgencia;
 		}
-    
-        
+
+	@Override
+	public String toString() {
+		return "Gerente{" +
+				"nome='" + getNome() + '\'' +
+				", salario=" + getSalario() +
+				", idAgencia=" + idAgencia +
+				", nome='" + nome + '\'' +
+				", id=" + getId() +
+				", cpf='" + getCpf() + '\'' +
+				", tipo='" + getTipo() + '\'' +
+				", senha='" + getSenha() + '\'' +
+				", agencia=" + getAgencia() +
+				", numeroConta=" + getNumeroConta() +
+				'}';
+	}
 }
