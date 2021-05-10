@@ -458,7 +458,7 @@ public class SistemaInterno {
         Map<Usuario, String> userMap = File.getMap();
         userMap.get(usuario);
 
-        if (usuario.getCpf().equals(cpf) && Usuario.getSenha().equals(senha)) {
+        if (usuario.getCpf().equals(cpf) && usuario.getSenha().equals(senha)) {
             System.out.print("Login efetuado!");
             System.out.print("\n");
             return usuario;
