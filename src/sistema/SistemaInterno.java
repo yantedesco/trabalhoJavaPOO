@@ -3,6 +3,7 @@ package sistema;
 import Users.Usuario;
 import armazenamento.File;
 import banco.Conta;
+import banco.Relatorio;
 
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class SistemaInterno {
 
 
     Scanner sc = new Scanner(System.in);
+    Relatorio rel = new Relatorio();
 
 
     // menu principal
@@ -124,16 +126,22 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-
-                    //				RELATORIO SALDO;
+                    System.out.println("Saldo em conta" );
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaDiretor.getSaldo());
                     break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaClie);
                     break;
 
                 case 3:
                     //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
                     break;
                 case 4:
                     // VOLTA MENU ANT.
@@ -238,7 +246,7 @@ public class SistemaInterno {
     }
 
     //menu relatorios gerente
-    public void menuRelatorioGerente() {
+    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
@@ -255,20 +263,27 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-
-                    //				RELATORIO SALDO;
+                    System.out.println("Saldo em conta" );
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaGerente.getSaldo());
                     break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaGerente);
                     break;
 
                 case 3:
                     //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
                     break;
 
                 case 4:
                     //				Relatório do número contas na mesma agência em que este gerente trabalha
+
                     break;
 
                 case 5:
@@ -382,7 +397,7 @@ public class SistemaInterno {
                         System.out.print("Quase lá, você será redirecionado...");
                         System.out.print("\n");
                         //for each para pegar as contas
-                        
+
 
                         if (usuario.getTipo().equalsIgnoreCase("diretor")) {
                             menuDiretor(usuario, contaUsuario);
@@ -423,29 +438,35 @@ public class SistemaInterno {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO DIRETOR :");
-            System.out.println("\n                   =========================================");
-            System.out.println("                  |  1 - SALDO                              |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-            System.out.println("                  |  3 - RENDIMENTO POUPANÇA                |");
-            System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO     |");
-            System.out.println("                  |  5 - MENU ANTERIOR                      |");
-            System.out.println("                  |  6 - MENU PRINCIPAL                     |");
-            System.out.println("                  |  0 - SAIR                               |");
-            System.out.println("                   =========================================\n");
+            System.out.println("\n                   ==========================================");
+            System.out.println("                  |  1 - SALDO                               |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO CC                       |");
+            System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
+            System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO      |");
+            System.out.println("                  |  5 - MENU ANTERIOR                       |");
+            System.out.println("                  |  6 - MENU PRINCIPAL                      |");
+            System.out.println("                  |  0 - SAIR                                |");
+            System.out.println("                   ==========================================\n");
             System.out.print("Opção --> ");
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta: " );
-                    System.out.println("O saldo atual de"+ usuario.getNome()+" em conta é de R$: "+ contaDiretor.getSaldo());
+                    System.out.println("Saldo em conta" );
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaDiretor.getSaldo());
                     break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaDiretor);
                     break;
 
                 case 3:
                     //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
                     break;
 
                 case 4:
@@ -474,7 +495,7 @@ public class SistemaInterno {
             if(conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)){
                return conta;
             }
-        }    
+        }
          return null;
     }
 

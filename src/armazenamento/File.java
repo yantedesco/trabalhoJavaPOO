@@ -22,24 +22,21 @@ import java.util.Scanner;
 
 public class File {
 
-        static final String PATH_BASICO = "./temp/";
-        static final String EXTENSAO = ".txt";
+    static final String PATH_BASICO = "./temp/";
+    static final String EXTENSAO = ".txt";
 
-        static Map<String, Usuario> mapUsuario = new HashMap<>();
-        static Map<String, Conta> mapConta = new HashMap<>();
+    static Map<String, Usuario> mapUsuario = new HashMap<>();
+    static Map<String, Conta> mapConta = new HashMap<>();
 
-        public static Map<String, Usuario> getMapUsuario() {
-            return mapUsuario;
-        }
+    public static Map<String, Usuario> getMapUsuario() {
+        return mapUsuario;
+    }
 
     public static Map<String, Conta> getMapConta() {
         return mapConta;
     }
 
     public static void hashMapFromFileTextUsuario(String path) {
-
-
-
 
             try {
                 BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+ "lista" +EXTENSAO));
@@ -85,16 +82,17 @@ public class File {
                 e.printStackTrace();
             }
     }
-         public static Map<String, Conta> hashMapFromFileTextContas(String path){
+
+         public static void hashMapFromFileTextContas(String path){
             try {
-                    BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
+                BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
                 String linha = "";
                 while (true) {
                     linha = buffRead.readLine();
                     if (linha != null) {
                         String[] pp = linha.split(";");
                         if(pp[0].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
-                            ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), Integer.parseInt(pp[5]), Double.parseDouble(pp[6]), Double.parseDouble(pp[7]));
+                            ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
                             System.out.println(cc);
                             mapConta.put("corrente", cc);
                         }
@@ -110,7 +108,6 @@ public class File {
             }catch (Exception e) {
                  e.printStackTrace();
             }
-            return mapConta;     
          }
 
         public static void escritor(String path) throws IOException {

@@ -13,40 +13,35 @@ import exceptions.ContaException;
     private static int totalMovimentacoes;
     private double tarifa = 15;
     protected double taxaMovimentacao=0.10;
-    
-    public Conta() {      }
-    
-    
-    
-    public static int getTotalMovimentacoes() {
-		return totalMovimentacoes;
-	}
+    private String tipoConta;
 
 
+	public Conta() {}
 
-	public Conta(int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia) {   
+	public Conta(int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia, String tipoConta) {
     	this.numeroDaConta=numeroDaConta;
     	this.nomeCompletoCliente=nomeCompletoCliente;
     	this.cpfTitular=cpfTitular;
     	this.saldo=saldo;
     	this.agencia=agencia;
-    	
+    	this.tipoConta = tipoConta;
+
     }
-    
-    
-    
+
+
+
    //*****************************************************************************************************************
                   //            saque
-    
-    
+
+
     public boolean sacar(double valor) {
     	if(valor<=0) {
 			System.out.println("Valor invalido para Saque ");
 			return false;
 		}
-    	
+
        else if(this.saldo < valor) {
-			
+
 			System.out.println("Seu saldo é insuficiente!!!");
 			return false;
 		}
@@ -58,35 +53,35 @@ import exceptions.ContaException;
 			return true;
 		}
 	}
-    
+
 //********************************************************************************************************************
                                //   TRANSFERENCIA
        //   os 0,20 centavos que cobra da transferencia sera retidado via taxa deposito e saque
-	
+
 	public boolean transfere(Conta destino, double valor) {
-		
+
 		boolean retirou = this.sacar(valor);
 		if (retirou) {
-			
+
 		   this.saldo=this.saldo-taxaMovimentacao;
-			
+
 			destino.depositar(valor);
-		 
+
 			System.out.println("Transferência realizada com sucesso!!!");
 			return true;
-		} 
+		}
 		else {
 			System.out.println(" O valor não Pode ser Transferido !!!!!   ");
 			System.out.println(" Por favor revise o valor desejado e tente novamente " );
 			return false;
 		}
 	}
-	
-	
+
+
 	//********************************************************************************************************************
 	                             //  DEPOSITO
-	
-	
+
+
 	public double depositar(double valor) {
 		totalMovimentacoes++;
 		if(valor<=0) {
@@ -95,23 +90,31 @@ import exceptions.ContaException;
 			return this.saldo - taxaMovimentacao;
 			}
 		else {
-		
+
 		this.saldo = this.saldo + valor;
 		this.saldo= this.saldo -taxaMovimentacao;  // taxa cobrada por deposito
 		System.out.println("Depósito realizado com sucesso!!!");
 		return this.saldo;
-		
+
 		}
 	}
 
-	
+
 	//********************************************************************************************************************
 
-	
-	
-	
-	
-	
+
+
+
+		public String getTipoConta() {
+			return tipoConta;
+		}
+
+		public static int getTotalMovimentacoes() {
+		return totalMovimentacoes;
+	}
+
+
+
 
 	public double getTarifa() {
 		return tarifa;

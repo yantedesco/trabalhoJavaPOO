@@ -2,44 +2,20 @@
 package banco;
 
 public class ContaCorrente extends Conta {
-    
-    private String tipoConta;
-    
-   
-    
+
 	
-	public ContaCorrente() {         }
-	
-	   
-	
-	public ContaCorrente(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta,double investimento,double tarifa) {
-		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia);
-		
-		this.tipoConta=tipoConta;
-		
-	    
+	public ContaCorrente() {}
+
+	public ContaCorrente(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta) {
+		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia, tipoConta);
 	}
-
-
-
-	public String getTipoConta() {
-		return tipoConta;
-	}
-
-
-
-	public void setTipoConta(String tipoConta) {
-		this.tipoConta = tipoConta;
-	}
-
-
 
 
 
 
 	@Override
 	public String toString() {
-		return "Conta Corrente: \nTipo Conta: " + tipoConta +  
+		return "Conta Corrente: \nTipo Conta: " + getTipoConta() +
 				"\nNumero da Conta =  " + getNumeroDaConta() + 
 				"\nAgencia= " + getAgencia()+
 				"\nNome Completo do Cliente=   "+ getNomeCompletoCliente() +   
