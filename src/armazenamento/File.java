@@ -143,6 +143,52 @@ public class File {
 
             buffWrite.close();
         }
+        
+        
+        public static void comprovanteSaque(String path, Usuario usuario, Conta numConta, double vlrSaque) throws IOException {
+
+            BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+            String linha = "**********Saque**********";
+            buffWrite.append(linha).append("\n");
+
+            linha = "Agencia: "+usuario.getAgencia();
+            buffWrite.append(linha).append("\n");
+
+            linha = "Conta: "+numConta.getNumeroDaConta(); // averiguar parametro
+            buffWrite.append(linha).append("\n");
+
+            linha = "Saque: R$"+vlrSaque;
+            buffWrite.append(linha).append("\n");
+
+            linha = "**********Fim do Saque**********";
+            buffWrite.append(linha).append("\n");
+
+            buffWrite.close();
+        }
+        
+        public static void comprovanteTransferencia(String path, Usuario usuario, Conta numConta, double vlrTransferencia, int numContaDestino) throws IOException {
+
+            BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+            String linha = "**********Transferência**********";
+            buffWrite.append(linha).append("\n");
+
+            linha = "Agencia: "+usuario.getAgencia();
+            buffWrite.append(linha).append("\n");
+
+            linha = "Conta: "+numConta.getNumeroDaConta(); // averiguar parametro
+            buffWrite.append(linha).append("\n");
+
+            linha = "Valor Transferido: R$"+vlrTransferencia;
+            buffWrite.append(linha).append("\n");
+            
+            linha = "Conta: "+numContaDestino;
+            buffWrite.append(linha).append("\n");
+
+            linha = "**********Fim da Transferência**********";
+            buffWrite.append(linha).append("\n");
+
+            buffWrite.close();
+        }
 
 
     public static String getPathBasico() {
