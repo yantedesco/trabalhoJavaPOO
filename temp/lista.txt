@@ -1,0 +1,6 @@
+﻿Yan Tedesco;01;11122233344;Presidente;yan123;0123;001;8000.0
+Igor Stumpf;02;11122233355;cliente;igor123;0123;002
+Marcos Bet;03;11122233366;cliente;marcos123;0123;003
+Brayan Cataldo;04;11122233377;Gerente;brayan123;0123;004;2000.0;0002
+Lucas Azevedo;05;11122233388;cliente;lucas123;0123;005
+Ricardo Araujo;06;11122233399;Diretor;araujo123;0123;006;4000.0
