@@ -1,4 +1,0 @@
-/nbbuild.xml
-/nbproject
-/build
-/.gitignore
