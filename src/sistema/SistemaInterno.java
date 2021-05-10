@@ -4,36 +4,33 @@ import Users.Usuario;
 import armazenamento.File;
 import banco.Conta;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class SistemaInterno {
 
 
     Scanner sc = new Scanner(System.in);
+    Map<Usuario, String> userMap = File.getMap();
 
 
     // menu principal
-    public void menuPrincipal() {
+    public void menuPrincipal(Usuario usuario) {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
         login();
         //condicional enum
-        Usuario usuario = null;
 
-        assert false;
         File.hashMapFromFileText(File.getPathBasico() +
                 usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
 
-        if (File.getMap().containsValue("diretor")) {
+        if (userMap.containsValue("diretor")) {
             menuDiretor();
-        } else if (File.getMap().containsValue("cliente")) {
+        } else if (userMap.containsValue("cliente")) {
             menuCliente();
-        } else if (File.getMap().containsValue("presidente")) {
+        } else if (userMap.containsValue("presidente")) {
             menuPresidente();
-        } else if (File.getMap().containsValue("gerente")) {
+        } else if (userMap.containsValue("gerente")) {
             menuGerente();
         }
 
@@ -99,7 +96,7 @@ public class SistemaInterno {
                     menuRelatorioCliente();
                     break;
                 case 3:
-                    menuPrincipal();
+                    menuPrincipal(userMap.get(usuario));
                     break;
                 case 0:
                     break;
@@ -396,7 +393,6 @@ public class SistemaInterno {
         //tratar \/
         //TreeSet<Usuario> listaUsuarios = Data.getData().getListaUsuarios(); //Pegar a TreeSet de Data
 
-        Conta conta = Conta.getInstance(); //Pegar a instância de Conta
         File file = File.hashMapFromFileText(); //Pegar o arquivo de Arquivo
         System.out.print("****************************");
         System.out.print("\n");
@@ -406,7 +402,7 @@ public class SistemaInterno {
         System.out.print("****************************");
         System.out.print("\n");
         System.out.print("\n");
-        listaUsuarios = File.ReadFromFile(); //Get the container from the file
+        Usuario usuario = File.getMap().get(usuario); //Get the container from the file
         //Data.getData().setHolder(listaUsuarios); //Store the container obtained from the file into the database
 
 
@@ -429,7 +425,6 @@ public class SistemaInterno {
                     System.out.print("Digite sua senha:");
                     String senha = sc.next(); //Enter the password from the keyboard
 
-                    Usuario usuario = File.getMap().get(0);
                     Usuario usuario = verificaLogin(usuario, cpf, senha);
                     if (usuario != null) {//Determine whether the login is successful
                         System.out.print("Login efetuado! Bem vindo!");
@@ -455,7 +450,6 @@ public class SistemaInterno {
 
     //Login method
     public Usuario verificaLogin(Usuario usuario, String cpf, String senha) {
-        Map<Usuario, String> userMap = File.getMap();
         userMap.get(usuario);
 
         if (usuario.getCpf().equals(cpf) && usuario.getSenha().equals(senha)) {
