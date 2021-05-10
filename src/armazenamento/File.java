@@ -25,14 +25,18 @@ public class File {
         static final String PATH_BASICO = "./temp/";
         static final String EXTENSAO = ".txt";
 
-        static Map<Usuario, String> mapUsuario = new HashMap<>();
-        static Map<Conta, String> mapConta = new HashMap<>();
+        static Map<String, Usuario> mapUsuario = new HashMap<>();
+        static Map<String, Conta> mapConta = new HashMap<>();
 
-        public static Map<Usuario, String> getMap() {
+        public static Map<String, Usuario> getMapUsuario() {
             return mapUsuario;
         }
 
-        public static Map<Usuario, String> hashMapFromFileTextUsuario(String path) {
+    public static Map<String, Conta> getMapConta() {
+        return mapConta;
+    }
+
+    public static Map<String, Usuario> hashMapFromFileTextUsuario(String path) {
 
 
 
@@ -49,7 +53,7 @@ public class File {
                             Diretor d = new Diretor(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]),Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
                             System.out.println(d);
                             String cpf = pp[2];
-                            mapUsuario.put(d, cpf);
+                            mapUsuario.put(cpf, d);
                         }
                         else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
                             //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
@@ -57,7 +61,7 @@ public class File {
                             //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
                             System.out.println(cli);
                             String cpf = pp[4];
-                            mapUsuario.put(cli, cpf);
+                            mapUsuario.put(cpf, cli);
                             File.comprovanteDeposito(PATH_BASICO+cli.getNome()+"_"+cli.getCpf()+EXTENSAO, cli, cli.getNumeroConta(), 1250.00);
                         }
                         else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.GERENTE.getTipo())){
@@ -67,7 +71,8 @@ public class File {
                         else if (pp[0].equalsIgnoreCase(UsuarioTipoEnum.PRESIDENTE.getTipo())){
                             Presidente pre = new Presidente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
                             //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario
-                            mapUsuario.put(pre, "presidente");
+                            String cpf = pp[2];
+                            mapUsuario.put(cpf, pre);
                         }    
 
                     } else
@@ -81,7 +86,7 @@ public class File {
             }
             return mapUsuario;
         }
-         public static Map<Conta, String> hashMapFromFileTextContas(String path){
+         public static Map<String, Conta> hashMapFromFileTextContas(String path){
             try {
                     BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
                 String linha = "";
@@ -92,12 +97,12 @@ public class File {
                         if(pp[0].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
                             ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), Integer.parseInt(pp[5]), Double.parseDouble(pp[6]), Double.parseDouble(pp[7]));
                             System.out.println(cc);
-                            mapConta.put(cc, "corrente");
+                            mapConta.put("corrente", cc);
                         }
                         else if(pp[0].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
                             ContaPoupanca cp = new ContaPoupanca(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
                             System.out.println(cp);
-                            mapConta.put(cp, "poupanca");
+                            mapConta.put("poupanca", cp);
                         }
                     } else
                         break;

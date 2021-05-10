@@ -2,37 +2,22 @@ package sistema;
 
 import Users.Usuario;
 import armazenamento.File;
-import banco.Conta;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class SistemaInterno {
 
 
     Scanner sc = new Scanner(System.in);
-    Map<Usuario, String> userMap = File.getMap();
 
 
     // menu principal
-    public void menuPrincipal(Usuario usuario) {
+    public void menuPrincipal() {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
         login();
         //condicional enum
 
-        File.hashMapFromFileText(File.getPathBasico() +
-                usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
-
-        if (userMap.containsValue("diretor")) {
-            menuDiretor();
-        } else if (userMap.containsValue("cliente")) {
-            menuCliente();
-        } else if (userMap.containsValue("presidente")) {
-            menuPresidente();
-        } else if (userMap.containsValue("gerente")) {
-            menuGerente();
-        }
 
 
         int opcao;
@@ -96,7 +81,7 @@ public class SistemaInterno {
                     menuRelatorioCliente();
                     break;
                 case 3:
-                    menuPrincipal(userMap.get(usuario));
+                    menuPrincipal();
                     break;
                 case 0:
                     break;
@@ -126,6 +111,8 @@ public class SistemaInterno {
                 case 1:
                     //SAQUE;
                     //           sacar();
+//                    File.escritor(File.getPathBasico() +
+//                            usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
                     break;
 
                 case 2:
@@ -390,10 +377,7 @@ public class SistemaInterno {
     //Login menu
     public void login() {
 
-        //tratar \/
-        //TreeSet<Usuario> listaUsuarios = Data.getData().getListaUsuarios(); //Pegar a TreeSet de Data
 
-        File file = File.hashMapFromFileText(); //Pegar o arquivo de Arquivo
         System.out.print("****************************");
         System.out.print("\n");
         System.out.print("\n");
@@ -402,11 +386,10 @@ public class SistemaInterno {
         System.out.print("****************************");
         System.out.print("\n");
         System.out.print("\n");
-        Usuario usuario = File.getMap().get(usuario); //Get the container from the file
-        //Data.getData().setHolder(listaUsuarios); //Store the container obtained from the file into the database
 
 
-        int opcao = 1; //Get number from keyboard
+
+        int opcao = 1;
         while (opcao != 0) {
             System.out.print("****************************");
             System.out.print("\n");
@@ -418,49 +401,58 @@ public class SistemaInterno {
             System.out.print("\n");
             System.out.print("Opção --> ");
             opcao = sc.nextInt();
-            switch (opcao) { //Select based on the value entered by the user
+            switch (opcao) {
                 case 1:
                     System.out.print("Digite o seu CPF:");
-                    String cpf = sc.next(); //Get the entered user name from the keyboard
+                    String cpf = sc.next();
                     System.out.print("Digite sua senha:");
-                    String senha = sc.next(); //Enter the password from the keyboard
+                    String senha = sc.next();
 
-                    Usuario usuario = verificaLogin(usuario, cpf, senha);
-                    if (usuario != null) {//Determine whether the login is successful
+
+
+                    Usuario usuario = verificaLogin(cpf, senha);
+                    if (usuario != null) {
                         System.out.print("Login efetuado! Bem vindo!");
                         System.out.print("\n");
-                        System.out.print("Quase lá, você será redirecionado..."); //colocar wait
+                        System.out.print("Quase lá, você será redirecionado...");
                         System.out.print("\n");
-                        this.menuPrincipal(usuario); //If the login is successful, transfer the user object to the bank operation interface and jump
+                        File.hashMapFromFileTextUsuario(File.getPathBasico() +
+                                usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
+
+                        if (File.getMapUsuario().containsKey("diretor")) {
+                            menuDiretor();
+                        } else if (File.getMapUsuario().containsKey("cliente")) {
+                            menuCliente();
+                        } else if (File.getMapUsuario().containsKey("presidente")) {
+                            menuPresidente();
+                        } else if (File.getMapUsuario().containsKey("gerente")) {
+                            menuGerente();
+                        }
+
+
                     } else {
-                        System.out.print("Usuário não reconhecido, tente novamente."); //Print this statement if login fails
+                        System.out.print("Usuário não reconhecido, tente novamente.");
                         System.out.print("\n");
                     }
                     break;
                 case 0:
-                    File.escritor(usuario); //Exit system to save information to file
                     System.out.print("Até logo!");
                     System.out.print("\n");
-                default: //verificar no tratamento de erros
+                default:
                     System.out.print("Erro na leitura!");
                     System.out.print("\n");
             }
         }
     }
 
-    //Login method
-    public Usuario verificaLogin(Usuario usuario, String cpf, String senha) {
-        userMap.get(usuario);
-
-        if (usuario.getCpf().equals(cpf) && usuario.getSenha().equals(senha)) {
-            System.out.print("Login efetuado!");
-            System.out.print("\n");
-            return usuario;
-        } else {
-            System.out.print("CPF ou senha inválidos!");
-            System.out.print("\n");
-            return null;
+    //Método verificar login
+    public Usuario verificaLogin(String cpf, String senha) {
+        for (Usuario user : File.getMapUsuario().values()) {
+            if ((user.getCpf().equalsIgnoreCase(cpf)) && (user.getSenha().equalsIgnoreCase(senha))) {
+                return user;
+            }
         }
+        return null;
     }
 
 
@@ -486,25 +478,3 @@ public class SistemaInterno {
 
     }
 }
-
-/*
-
-
-
- */
-
-        
-        
-    
- /* public void menuUm(){
-        int escolha1;
-    do{
-            System.out.println("Escolha o tipo de acesso:");
-            System.out.println("[ 1 ] CLIENTE\n[ 2 ] FUNCIONARIO\n[ 3 ] SAIR\nDigite sua escolha: ");
-            escolha1 = leia.nextInt();
-            
-    
-    }while(escolha1 != 3);
-    
-  } */ 
-
