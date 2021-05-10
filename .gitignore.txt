@@ -1,4 +1,4 @@
-/nbbuild
+/nbbuild.xml
 /nbproject
 /build
 /.gitignore
