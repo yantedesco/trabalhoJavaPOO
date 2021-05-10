@@ -4,6 +4,8 @@ package armazenamento;
 
 import Users.Cliente;
 import Users.Diretor;
+import Users.Gerente;
+import Users.Presidente;
 import Users.Usuario;
 import banco.Conta;
 import banco.ContaCorrente;
@@ -23,21 +25,66 @@ public class File {
         static final String PATH_BASICO = "./temp/";
         static final String EXTENSAO = ".txt";
 
-        static Map<Usuario, String> map = new HashMap<>();
+        static Map<Usuario, String> mapUsuario = new HashMap<>();
+        static Map<Conta, String> mapConta = new HashMap<>();
 
         public static Map<Usuario, String> getMap() {
-            return map;
+            return mapUsuario;
         }
 
-        public static Map<Usuario, String> hashMapFromFileText(String path) {
+        public static Map<Usuario, String> hashMapFromFileTextUsuario(String path) {
 
 
-            Map<Conta, String> mapConta = new HashMap<>();
 
             try {
                 BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
                 String linha = "";
 
+                while (true) {
+                    linha = buffRead.readLine();
+                    if (linha != null) {
+                        String[] pp = linha.split(";");
+                        
+                        if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.DIRETOR.getTipo())) {
+                            Diretor d = new Diretor(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]),Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
+                            System.out.println(d);
+                            String cpf = pp[2];
+                            mapUsuario.put(d, cpf);
+                        }
+                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
+                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
+                            Cliente cli = new Cliente(pp[0], Integer.parseInt(pp[1]),pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]));
+                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
+                            System.out.println(cli);
+                            String cpf = pp[4];
+                            mapUsuario.put(cli, cpf);
+                            File.comprovanteDeposito(PATH_BASICO+cli.getNome()+"_"+cli.getCpf()+EXTENSAO, cli, cli.getNumeroConta(), 1250.00);
+                        }
+                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.GERENTE.getTipo())){
+                            Gerente ger = new Gerente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]), Double.parseDouble(pp[7]),Integer.parseInt(pp[8]));
+                            //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario, int idAgencia
+                        }
+                        else if (pp[0].equalsIgnoreCase(UsuarioTipoEnum.PRESIDENTE.getTipo())){
+                            Presidente pre = new Presidente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
+                            //String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario
+                            mapUsuario.put(pre, "presidente");
+                        }    
+
+                    } else
+                        break;
+                }
+                buffRead.close();
+               
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return mapUsuario;
+        }
+         public static Map<Conta, String> hashMapFromFileTextContas(String path){
+            try {
+                    BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
+                String linha = "";
                 while (true) {
                     linha = buffRead.readLine();
                     if (linha != null) {
@@ -52,32 +99,15 @@ public class File {
                             System.out.println(cp);
                             mapConta.put(cp, "poupanca");
                         }
-                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.DIRETOR.getTipo())) {
-                            Diretor d = new Diretor(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], pp[4], Integer.parseInt(pp[5]),Integer.parseInt(pp[6]), Double.parseDouble(pp[7]));
-                            System.out.println(d);
-                            String cpf = pp[2];
-                            map.put(d, cpf);
-                        }
-                        else if(pp[0].equalsIgnoreCase(UsuarioTipoEnum.CLIENTE.getTipo())) {
-                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
-                            Cliente cli = new Cliente(pp[0], Integer.parseInt(pp[1]),pp[2], pp[3], pp[4], Integer.parseInt(pp[5]), Integer.parseInt(pp[6]));
-                            //String tipo, String nome, Integer id, String cpf, String senha, Integer agencia, Integer numeroConta
-                            System.out.println(cli);
-                            String cpf = pp[4];
-                            map.put(cli, cpf);
-                            File.comprovanteDeposito(PATH_BASICO+cli.getNome()+"_"+cli.getCpf()+EXTENSAO, cli, cli.getNumeroConta(), 1250.00);
-                        }
-
                     } else
                         break;
                 }
-                buffRead.close();
+         
+            }catch (Exception e) {
+                 e.printStackTrace();
             }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            return map;
-        }
+            return mapConta;     
+         }
 
         public static void escritor(String path) throws IOException {
 
@@ -123,3 +153,5 @@ public class File {
         return EXTENSAO;
     }
 }
+
+

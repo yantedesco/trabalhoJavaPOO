@@ -24,7 +24,7 @@ public class SistemaInterno {
         Usuario usuario = null;
 
         assert false;
-        File.hashMapFromFileText(File.getPathBasico() +
+        File.hashMapFromFileTextUsuario(File.getPathBasico() +
                 usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
 
         if (File.getMap().containsValue("diretor")) {
