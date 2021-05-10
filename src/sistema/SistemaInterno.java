@@ -27,7 +27,7 @@ public class SistemaInterno {
     }
 
     // menu cliente
-    public void menuCliente(Usuario usuario, Conta contaUsuario) {
+    public void menuCliente(Usuario usuario, Conta contaCliente) {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
@@ -42,11 +42,11 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     //MENU DE CONTA;
-                    menuOpConta(usuario,contaUsuario);
+                    menuOpConta(usuario, contaCliente);
                     break;
                 case 2:
                     //MENU RELAATORIOS;
-                    menuRelatorioCliente();
+                    menuRelatorioCliente(usuario, contaCliente);
                     break;
                 case 3:
                     menuPrincipal();
@@ -110,7 +110,7 @@ public class SistemaInterno {
     }*/
 
     //menu relatorios cliente
-    public void menuRelatorioCliente() {
+    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
@@ -127,12 +127,12 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaDiretor.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaCliente.getSaldo());
                     break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaClie);
+                    rel.tributacao(contaCliente);
                     break;
 
                 case 3:
@@ -182,7 +182,7 @@ public class SistemaInterno {
                     break;
                 case 2:
                     //MENU RELATORIOS;
-                    menuRelatorioGerente();
+                    menuRelatorioGerente(usuario, contaUsuario);
                     break;
                 case 3:
                     menuPrincipal();
