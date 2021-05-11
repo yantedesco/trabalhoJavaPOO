@@ -280,7 +280,7 @@ public class SistemaInterno {
             System.out.println("                  |  1 - SALDO                              |");
             System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
             System.out.println("                  |  3 - RENDIMENTO POUPANÇA                |");
-            System.out.println("                  |  4 - NÚMERO DE CONTAS NA MESMA AGÊNCIA  |");
+            System.out.println("                  |  4 - CONTAS NA MESMA AGÊNCIA            |");
             System.out.println("                  |  5 - MENU ANTERIOR                      |");
             System.out.println("                  |  6 - LOGIN COM OUTRA CONTA              |");
             System.out.println("                  |  0 - SAIR                               |");
@@ -308,7 +308,9 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                    //				Relatório do número contas na mesma agência em que este gerente trabalha
+                    //				Relatório de contas na mesma agência em que este gerente trabalha
+
+                    File.pegaContasAgencia(usuario.getAgencia(), "./temp/relatorioGerenteAg/"+usuario.getAgencia()+".txt");
 
                     break;
 
@@ -374,8 +376,9 @@ public class SistemaInterno {
             System.out.println("                  |  2 - TRIBUTAÇÃO CC                       |");
             System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
             System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO      |");
-            System.out.println("                  |  5 - MENU ANTERIOR                       |");
-            System.out.println("                  |  6 - LOGIN COM OUTRA CONTA               |");
+            System.out.println("                  |  5 - RELATÓRIO DE CLIENTES POR AGÊNCIA   |");
+            System.out.println("                  |  6 - MENU ANTERIOR                       |");
+            System.out.println("                  |  7 - LOGIN COM OUTRA CONTA               |");
             System.out.println("                  |  0 - SAIR                                |");
             System.out.println("                   ==========================================\n");
             System.out.print("Opção --> ");
@@ -405,10 +408,16 @@ public class SistemaInterno {
                     break;
 
                 case 5:
-                    menuPorTipo(usuario, contaDiretor);
+                    System.out.print("Informe o número da agência para consulta: ");
+                    int agencia = sc.nextInt();
+                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/"+agencia+".txt" );
                     break;
 
                 case 6:
+                    menuPorTipo(usuario, contaDiretor);
+                    break;
+
+                case 7:
                     //VOLTA MENU PRINC.
                     menuPrincipal();
                     break;
@@ -465,9 +474,10 @@ public class SistemaInterno {
             System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
             System.out.println("                  |  3 - RELATÓRIO RENDIMENTO EM POUPANÇA   |");
             System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO     |");
-            System.out.println("                  |  5 - RELATÓRIO DE CAPITAL TOTAL         |");
-            System.out.println("                  |  6 - MENU ANTERIOR                      |");
-            System.out.println("                  |  7 - LOGIN COM OUTRA CONTA              |");
+            System.out.println("                  |  5 - RELATÓRIO DE CLIENTES POR AGÊNCIA  |");
+            System.out.println("                  |  6 - RELATÓRIO DE CAPITAL TOTAL         |");
+            System.out.println("                  |  7 - MENU ANTERIOR                      |");
+            System.out.println("                  |  8 - LOGIN COM OUTRA CONTA              |");
             System.out.println("                  |  0 - SAIR                               |");
             System.out.println("                   =========================================\n");
             System.out.print("Opção --> ");
@@ -493,19 +503,25 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                    System.out.println(File.getMapUsuario());
+                    rel.nomesOrdemAlfabetica();
                     break;
 
                 case 5:
+                    System.out.print("Informe o número da agência para consulta: ");
+                    int agencia = sc.nextInt();
+                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/"+agencia+".txt" );
+                    break;
+
+                case 6:
                     // 			RELATORIO TOTAL DE CAPITAL
                     rel.capitalTotal();
                     break;
 
-                case 6:
+                case 7:
                     menuPorTipo(usuario, contaPresidente);
                     break;
 
-                case 7:
+                case 8:
                     //VOLTA MENU PRINC.
                     menuPrincipal();
                     break;

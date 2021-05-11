@@ -199,6 +199,37 @@ public class File {
 
         buffWrite.close();
     }
+    public static void pegaContasAgencia(int numAgencia, String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        int totalContas = 0;
+        System.out.println("*****************Relatório de Contas da Agência "+numAgencia+" *****************\n\n");
+        String linha = "*****************Relatório de Contas da Agência "+numAgencia+" *****************\n\n";
+        buffWrite.append(linha).append("\n");
+        for(Conta conta : File.getMapConta().values()){
+            if(conta.getAgencia() == numAgencia){
+                totalContas++;
+
+                System.out.println("\t\t\t\t\t\tTitular: "+conta.getNomeCompletoCliente());
+                linha ="\t\t\tTitular " + conta.getNomeCompletoCliente();
+                buffWrite.append(linha).append("\n");
+
+                System.out.println("\t\t\t\t\t\tNumero da Conta: "+ conta.getNumeroDaConta());
+                linha ="\t\t\tNumero da Conta: " + conta.getNumeroDaConta();
+                buffWrite.append(linha).append("\n");
+
+                System.out.println("\t\t\t\t\t\tTipo da Conta: "+ conta.getTipoConta()+"\n\n");
+                linha ="\t\t\tTipo da Conta: "+ conta.getTipoConta();
+                buffWrite.append(linha).append("\n\n");
+            }
+        }
+            System.out.println("\t\t\t\tTotal de contas registradas na agência: " + totalContas);
+            linha ="\n\t\tTotal de contas registradas na agência: " + totalContas;
+            buffWrite.append(linha).append("\n\n");
+            buffWrite.close();
+
+    }
+
+
 
 
     public static String getPathBasico() {
