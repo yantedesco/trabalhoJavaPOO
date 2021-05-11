@@ -13,7 +13,7 @@ import exceptions.ContaException;
     private static int totalMovimentacoes;
     private double tarifa = 15;
     protected double taxaMovimentacao=0.10;
-    private String tipoConta;
+    public String tipoConta;
 
 
 	public Conta() {}
@@ -172,8 +172,8 @@ import exceptions.ContaException;
 		throw new ContaException("Numero da agencia não pode ser negativo ou igual a zero");
 		this.agencia = agencia;
 	}
-    
-  
-    
-    
+
+
+
+
 }

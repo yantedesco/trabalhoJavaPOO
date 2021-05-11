@@ -85,14 +85,15 @@ public class File {
 
          public static void hashMapFromFileTextContas(String path){
             try {
+
                 BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+ "contas" +EXTENSAO));
-                String linha = "";
+                String linha;
                 while (true) {
                     linha = buffRead.readLine();
                     if (linha != null) {
                         String[] pp = linha.split(";");
                         if(pp[5].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
-                            ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
+                            ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
                             String cpf = pp[2];
                             mapConta.put(cpf, cc);
 //                            (int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta)
