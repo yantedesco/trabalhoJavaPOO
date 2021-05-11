@@ -3,7 +3,6 @@ package sistema;
 
 
 import armazenamento.File;
-import banco.Relatorio;
 
 public class Principal {
 
@@ -19,9 +18,9 @@ public class Principal {
         File.hashMapFromFileTextContas(File.getPathBasico() +
                 "contas"+ File.getEXTENSAO());
 
-//        System.out.println(File.getMapConta());
-//        System.out.println("\n");        
-//        System.out.println(File.getMapUsuario());
+        System.out.println(File.getMapConta());
+        System.out.println("\n");
+        System.out.println(File.getMapUsuario());
 //        
 //        SistemaInterno sistema = new SistemaInterno();
 //        Relatorio r1 = new Relatorio();
