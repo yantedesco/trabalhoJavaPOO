@@ -129,7 +129,7 @@ public class File {
             buffWrite.close();
         }
 
-        public static void comprovanteDeposito(String path, Usuario usuario, Integer NumConta, double vlrDeposito) throws IOException {
+        public static void comprovanteDeposito(String path, Usuario usuario, Conta NumConta, double vlrDeposito) throws IOException {
 
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
             String linha = "**********Deposito**********";
@@ -138,7 +138,7 @@ public class File {
             linha = "Agencia: "+usuario.getAgencia();
             buffWrite.append(linha).append("\n");
 
-            linha = "Conta: "+NumConta;
+            linha = "Conta: "+NumConta.getNumeroDaConta();
             buffWrite.append(linha).append("\n");
 
             linha = "Depósito: R$"+vlrDeposito;
@@ -172,7 +172,7 @@ public class File {
             buffWrite.close();
         }
         
-        public static void comprovanteTransferencia(String path, Usuario usuario, Conta numConta, double vlrTransferencia, int numContaDestino) throws IOException {
+        public static void comprovanteTransferencia(String path, Usuario usuario, Conta numConta, double vlrTransferencia, Conta numContaDestino) throws IOException {
 
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
             String linha = "**********Transferência**********";
@@ -187,7 +187,7 @@ public class File {
             linha = "Valor Transferido: R$"+vlrTransferencia;
             buffWrite.append(linha).append("\n");
             
-            linha = "Conta: "+numContaDestino;
+            linha = "Conta: "+numContaDestino.getNumeroDaConta();
             buffWrite.append(linha).append("\n");
 
             linha = "**********Fim da Transferência**********";

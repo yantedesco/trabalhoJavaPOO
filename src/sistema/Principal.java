@@ -3,13 +3,14 @@ package sistema;
 
 
 import armazenamento.File;
-import banco.Relatorio;
+
+import java.io.IOException;
 
 public class Principal {
 
 
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException, IOException {
     	
 
 

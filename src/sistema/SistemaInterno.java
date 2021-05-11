@@ -5,6 +5,7 @@ import armazenamento.File;
 import banco.Conta;
 import banco.Relatorio;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -16,14 +17,14 @@ public class SistemaInterno {
 
 
     // menu principal
-    public void menuPrincipal() throws InterruptedException {
+    public void menuPrincipal() throws InterruptedException, IOException {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
-        login();        
+        login();
     }
 
     //Login menu
-    public void login() throws InterruptedException{
+    public void login() throws InterruptedException, IOException {
 
 
         System.out.print("=============================================");
@@ -33,7 +34,7 @@ public class SistemaInterno {
         System.out.print("\n");
         int opcao = 1;
         while (opcao != 0) {
-             System.out.println("\n        ===========================");
+            System.out.println("\n        ===========================");
             System.out.println("      |  1 - LOGIN                  |");
             System.out.println("      |  0 - SAIR                   |");
             System.out.println("        ===========================\n");
@@ -46,7 +47,6 @@ public class SistemaInterno {
                     String cpf = sc.next();
                     System.out.print("Digite sua senha: ");
                     String senha = sc.next();
-
 
 
                     Usuario usuario = verificaLogin(cpf, senha);
@@ -70,14 +70,14 @@ public class SistemaInterno {
                     System.out.print("Até logo!");
                     System.out.print("\n");
                     System.exit(opcao);
-                    
+
             }
         }
     }
-    
-    
+
+
     // menu operações de conta 
-    public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException {
+    public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
@@ -96,7 +96,9 @@ public class SistemaInterno {
                     System.out.println("Quanto deseja sacar? ");
                     System.out.print("Valor: ");
                     double valorSaque = sc.nextDouble();
-                    contaUsuario.sacar(valorSaque);
+                    if (contaUsuario.sacar(valorSaque)) {
+                        File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorSaque);
+                    }
                     break;
 
                 case 2:
@@ -104,8 +106,11 @@ public class SistemaInterno {
                     System.out.println("Quanto deseja depositar? ");
                     System.out.print("Valor: ");
                     double valorDeposito = sc.nextDouble();
-                    contaUsuario.depositar(valorDeposito);
-                    
+                    if (contaUsuario.depositar(valorDeposito)) {
+                        File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorDeposito);
+                    }
+
+
                     break;
                 case 3:
                     //TRANSFERÊNCIAS
@@ -115,13 +120,17 @@ public class SistemaInterno {
                     System.out.print("Informe o cpf do titular da conta para transferência: ");
                     String cpfDestino = sc.next();
                     Conta contaDest = pegaConta(cpfDestino);
-                    contaUsuario.transfere(contaDest, valorTransf);
+                    if (contaUsuario.transfere(contaDest, valorTransf)) {
+                        File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
+                    }
+
+
                     break;
                 case 4:
-                	menuPorTipo(usuario, contaUsuario);
-                	break;
+                    menuPorTipo(usuario, contaUsuario);
+                    break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
             }
@@ -129,10 +138,10 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-    
+
 
     // menu cliente
-    public void menuCliente(Usuario usuario, Conta contaCliente) throws InterruptedException {
+    public void menuCliente(Usuario usuario, Conta contaCliente) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
@@ -153,7 +162,7 @@ public class SistemaInterno {
                     menuRelatorioCliente(usuario, contaCliente);
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -163,9 +172,9 @@ public class SistemaInterno {
 
     }
 
-    
+
     //menu relatorios cliente
-    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente)throws InterruptedException {
+    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
@@ -181,8 +190,8 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaCliente.getSaldo()));
+                    System.out.println("Saldo em conta");
+                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaCliente.getSaldo()));
                     break;
 
                 case 2:
@@ -199,7 +208,7 @@ public class SistemaInterno {
                     rel.simulaPoupanca(valor, dias);
                     break;
                 case 4:
-                	menuPorTipo(usuario, contaCliente);                   
+                    menuPorTipo(usuario, contaCliente);
                     break;
 
                 case 5:
@@ -207,7 +216,7 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -217,9 +226,9 @@ public class SistemaInterno {
 
     }
 
-        
+
     // menu gerente
-    public void menuGerente(Usuario usuario, Conta contaUsuario) throws InterruptedException{
+    public void menuGerente(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO GERENTE:");
@@ -240,7 +249,7 @@ public class SistemaInterno {
                     menuRelatorioGerente(usuario, contaUsuario);
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -248,10 +257,10 @@ public class SistemaInterno {
 
         } while (opcao != 0);
 
-    }    
-    
+    }
+
     //menu relatorios gerente
-    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) throws InterruptedException {
+    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
@@ -268,8 +277,8 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+  new DecimalFormat("#,##0.00").format(contaGerente.getSaldo()) );
+                    System.out.println("Saldo em conta");
+                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaGerente.getSaldo()));
                     break;
 
                 case 2:
@@ -292,13 +301,13 @@ public class SistemaInterno {
                     break;
 
                 case 5:
-                	menuPorTipo(usuario, contaGerente);
-                	break;
+                    menuPorTipo(usuario, contaGerente);
+                    break;
                 case 6:
                     menuPrincipal();
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -307,11 +316,11 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-    
-    
+
+
     // menu diretor
-    public void menuDiretor(Usuario usuario, Conta contaUsuario) throws InterruptedException {
-        
+    public void menuDiretor(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
+
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO DIRETOR:");
@@ -330,9 +339,9 @@ public class SistemaInterno {
                 case 2:
                     menuRelatorioDiretor(usuario, contaUsuario);
                     break;
-                    
+
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -341,10 +350,10 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-    
-    
-// menu relatorio diretor
-     public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) throws InterruptedException {
+
+
+    // menu relatorio diretor
+    public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) throws InterruptedException, IOException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO DIRETOR :");
@@ -361,8 +370,8 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo()));
+                    System.out.println("Saldo em conta");
+                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo()));
                     break;
 
                 case 2:
@@ -384,7 +393,7 @@ public class SistemaInterno {
                     break;
 
                 case 5:
-                	menuPorTipo(usuario, contaDiretor);
+                    menuPorTipo(usuario, contaDiretor);
                     break;
 
                 case 6:
@@ -392,145 +401,145 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
-                	System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
                     System.out.print("\n");
                     System.exit(opcao);
 
             }
 
         } while (opcao != 0);
-        
+
     }
 
-     // menu area presidente
-     public void menuPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException {
-         int opcao;
-         do {
-             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
-             System.out.println("\n                   =============================");
-             System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
-             System.out.println("                  |  2 - RELATÓRIOS             |");
-             System.out.println("                  |  0 - SAIR                   |");
-             System.out.println("                   =============================\n");
-             System.out.print("Opção --> ");
-             opcao = sc.nextInt();
-             switch (opcao) {
-                 case 1:
-                     menuOpConta(usuario, contaPresidente);
-                     break;
-                 case 2:
-                	//RELATORIO PRESIDENTE
-                	 menuRelatorioPresidente(usuario, contaPresidente);
-                	 break;
+    // menu area presidente
+    public void menuPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException, IOException {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
+            System.out.println("\n                   =============================");
+            System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
+            System.out.println("                  |  2 - RELATÓRIOS             |");
+            System.out.println("                  |  0 - SAIR                   |");
+            System.out.println("                   =============================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    menuOpConta(usuario, contaPresidente);
+                    break;
+                case 2:
+                    //RELATORIO PRESIDENTE
+                    menuRelatorioPresidente(usuario, contaPresidente);
+                    break;
 
-                 case 0:
-                	 System.out.print("Até logo, " + usuario.getNome() +"!");
-                     System.out.print("\n");
-                     System.exit(opcao);
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
+                    System.out.print("\n");
+                    System.exit(opcao);
 
-             }
+            }
 
-         } while (opcao != 0);
+        } while (opcao != 0);
 
-     }
-     
-     // menu relatorio Presidente
-     public void menuRelatorioPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException {
-     	int opcao;
-     	do {
-     		System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO PRESIDENTE :");
-     		System.out.println("\n                   =========================================");
-     		System.out.println("                  |  1 - SALDO                              |");
-     		System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-     		System.out.println("                  |  3 - RELATÓRIO RENDIMENTO EM POUPANÇA   |");
-     		System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO     |");
-     		System.out.println("                  |  5 - RELATÓRIO DE CAPITAL TOTAL         |");
-     		System.out.println("                  |  6 - MENU ANTERIOR                      |");
-     		System.out.println("                  |  7 - LOGIN COM OUTRA CONTA              |");
-     		System.out.println("                  |  0 - SAIR                               |");
-     		System.out.println("                   =========================================\n");
-     		System.out.print("Opção --> ");
-     		opcao = sc.nextInt();
-     		switch (opcao) {
-            case 1:
-                System.out.println("Saldo em conta" );
-                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo()));
-                break;
+    }
 
-            case 2:
-                //				RELATORIO TRIBUTAÇÃO CC;
-                rel.tributacao(contaPresidente);
-                break;
+    // menu relatorio Presidente
+    public void menuRelatorioPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException, IOException {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO PRESIDENTE :");
+            System.out.println("\n                   =========================================");
+            System.out.println("                  |  1 - SALDO                              |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
+            System.out.println("                  |  3 - RELATÓRIO RENDIMENTO EM POUPANÇA   |");
+            System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO     |");
+            System.out.println("                  |  5 - RELATÓRIO DE CAPITAL TOTAL         |");
+            System.out.println("                  |  6 - MENU ANTERIOR                      |");
+            System.out.println("                  |  7 - LOGIN COM OUTRA CONTA              |");
+            System.out.println("                  |  0 - SAIR                               |");
+            System.out.println("                   =========================================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    System.out.println("Saldo em conta");
+                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo()));
+                    break;
 
-            case 3:
-                //				RELATORIO RENDIMENTO POUPANÇA;
-                System.out.print("Qual valor você deseja simular? ");
-                double valor = sc.nextDouble();
-                System.out.print("Qual a duração do investimento? ");
-                int dias = sc.nextInt();
-                rel.simulaPoupanca(valor, dias);
-                break;
+                case 2:
+                    //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaPresidente);
+                    break;
 
-            case 4:
-                System.out.println(File.getMapUsuario());
-                break;
-     			
-     		case 5:
-     			// 			RELATORIO TOTAL DE CAPITAL
-     			rel.capitalTotal();
-     			break;
-     			
-     		case 6:
-     			menuPorTipo(usuario, contaPresidente);
-     			break;
-     			
-     		case 7:
-     			//VOLTA MENU PRINC.
-     			menuPrincipal();
-     			break;
-     		case 0:
-     			System.out.print("Até logo, " + usuario.getNome() +"!");
-                System.out.print("\n");
-                System.exit(opcao);
-     			
-     		}
-     		
-     	} while (opcao != 0);
-     	
-     }
-     
-     //Método verificar login
-     public Usuario verificaLogin(String cpf, String senha) {
-         for (Usuario user : File.getMapUsuario().values()) {
-             if ((user.getCpf().equalsIgnoreCase(cpf)) && (user.getSenha().equalsIgnoreCase(senha))) {
-                 return user;
-             }
-         }
-         return null;
-     }  
+                case 3:
+                    //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
+                    break;
 
-     // Método pega conta
-     public Conta pegaConta(String cpfUsuario){
-         for (Conta conta : File.getMapConta().values()){
-             if(conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)){
+                case 4:
+                    System.out.println(File.getMapUsuario());
+                    break;
+
+                case 5:
+                    // 			RELATORIO TOTAL DE CAPITAL
+                    rel.capitalTotal();
+                    break;
+
+                case 6:
+                    menuPorTipo(usuario, contaPresidente);
+                    break;
+
+                case 7:
+                    //VOLTA MENU PRINC.
+                    menuPrincipal();
+                    break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome() + "!");
+                    System.out.print("\n");
+                    System.exit(opcao);
+
+            }
+
+        } while (opcao != 0);
+
+    }
+
+    //Método verificar login
+    public Usuario verificaLogin(String cpf, String senha) {
+        for (Usuario user : File.getMapUsuario().values()) {
+            if ((user.getCpf().equalsIgnoreCase(cpf)) && (user.getSenha().equalsIgnoreCase(senha))) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    // Método pega conta
+    public Conta pegaConta(String cpfUsuario) {
+        for (Conta conta : File.getMapConta().values()) {
+            if (conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)) {
                 return conta;
-             }
-         }
-          return null;
-     }
+            }
+        }
+        return null;
+    }
 
-     
-     public void menuPorTipo(Usuario usuario, Conta contaUsuario) throws InterruptedException {
-    	 if (usuario.getTipo().equalsIgnoreCase("diretor")) {
-    		 menuDiretor(usuario, contaUsuario);
-    	 } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
-    		 menuCliente(usuario, contaUsuario);
-    	 } else if (usuario.getTipo().equalsIgnoreCase("presidente")) {
-    		 menuPresidente(usuario,contaUsuario);
-    	 } else if (usuario.getTipo().equalsIgnoreCase("gerente")) {
-    		 menuGerente(usuario, contaUsuario);
-    	 }
-     }
+
+    public void menuPorTipo(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
+        if (usuario.getTipo().equalsIgnoreCase("diretor")) {
+            menuDiretor(usuario, contaUsuario);
+        } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
+            menuCliente(usuario, contaUsuario);
+        } else if (usuario.getTipo().equalsIgnoreCase("presidente")) {
+            menuPresidente(usuario, contaUsuario);
+        } else if (usuario.getTipo().equalsIgnoreCase("gerente")) {
+            menuGerente(usuario, contaUsuario);
+        }
+    }
 
     public void imprimePinguin() {
         System.out.println("========================***=====================");

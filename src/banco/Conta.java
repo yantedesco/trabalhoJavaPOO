@@ -93,19 +93,20 @@ public abstract class Conta {
 	                             //  DEPOSITO
 
 
-	public double depositar(double valor) {
+	public boolean depositar(double valor) {
 		totalMovimentacoes++;
 		if(valor<=0) {
 			System.out.println("Depósito com envelope vazio é proibido!!! Depósito com R$ "+ valor + " é inválido.");
 			System.out.println("Depósitos vazios geram despesas e, convencionalmente, será cobrada tarifa de depósito.");
-			return this.saldo - taxaMovimentacao;
+			this.saldo -= taxaMovimentacao;
+			return true;
 			}
 		else {
 
 		this.saldo = this.saldo + valor;
-		this.saldo= this.saldo -taxaMovimentacao;  // taxa cobrada por deposito
+		this.saldo = this.saldo - taxaMovimentacao;  // taxa cobrada por deposito
 		System.out.println("Depósito realizado com sucesso!!!");
-		return this.saldo;
+		return false;
 
 		}
 	}
