@@ -23,9 +23,9 @@ public class Relatorio extends Conta {
 		double totalM = (conta.getTotalMovimentacoes() * taxaMovimentacao) ;
 		double totalT = totalM + super.getTarifa();
 
-		System.out.println("O valor da tarifa cobrada é de  R$" + getTarifa());
-		System.out.println("O valor total das taxas de movimentações é de R$" + totalM);
-		System.out.println("O total das tributações até agora é de = R$"+totalM);
+		System.out.println("O valor da tarifa cobrada é de R$ " + new DecimalFormat("#,##0.00").format(getTarifa()));
+		System.out.println("O valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalM));
+		System.out.println("O total das tributações até agora é de = R$ "+ new DecimalFormat("#,##0.00").format(totalT));
 
 	}
 	
@@ -37,7 +37,7 @@ public class Relatorio extends Conta {
 			totalSoma = totalSoma + conta.getSaldo() + totalT;
 			
 		}
-		System.out.println("O capital total do Banco dos Pinguins é de R$ " + totalSoma);
+		System.out.println("O capital total do Banco dos Pinguins é de R$ " + new DecimalFormat("#,##0.00").format(totalSoma));
 		
 	}
 

@@ -38,7 +38,7 @@ public abstract class Conta {
 
     public boolean sacar(double valor) {
     	if(valor<=0) {
-			System.out.println("Valor invalido para Saque ");
+			System.out.println("Valor inválido para saque.");
 			return false;
 		}
 
@@ -61,23 +61,32 @@ public abstract class Conta {
        //   os 0,20 centavos que cobra da transferencia sera retidado via taxa deposito e saque
 
 	public boolean transfere(Conta destino, double valor) {
-
-		boolean retirou = this.sacar(valor);
-		if (retirou) {
-
-		   this.saldo=this.saldo-taxaMovimentacao;
-
-			destino.depositar(valor);
-
-			System.out.println("Transferência realizada com sucesso!!!");
-			return true;
-		}
-		else {
-			System.out.println(" O valor não Pode ser Transferido !!!!!   ");
-			System.out.println(" Por favor revise o valor desejado e tente novamente " );
+		
+		if (this.numeroDaConta == destino.numeroDaConta) {
+			System.out.println("Transferência não realizada!");
+			System.out.println("A conta destino é igual à conta origem.");
 			return false;
+			   }
+		else {
+			   if(valor<=0) {
+				   System.out.println("Valor inválido para transferência.");
+				   System.out.println("Por favor, revise o valor desejado e tente novamente.");
+				   return false;
+			   } else if (this.saldo < valor) {
+					System.out.println("Seu saldo é insuficiente!!!");
+					System.out.println("Transferência não realizada");
+					return false;
+			       } else {
+			    	   this.saldo = this.saldo - valor;
+			    	   this.saldo = this.saldo - taxaMovimentacao;
+			    	   destino.saldo = destino.saldo + valor;
+			    	   this.saldo = this.saldo - taxaMovimentacao;
+			    	   System.out.println("Transferência realizada com sucesso!!!");
+			        return true;
+			        }
 		}
-	}
+	}		   
+
 
 
 	//********************************************************************************************************************
@@ -87,8 +96,8 @@ public abstract class Conta {
 	public double depositar(double valor) {
 		totalMovimentacoes++;
 		if(valor<=0) {
-			System.out.println("Deposito com envelope vazio é proibido !!!"+ valor);
-			System.out.println("Depositos vazios geram despesas e convencionalmente será cobrado tarifa de deposito");
+			System.out.println("Depósito com envelope vazio é proibido!!! Depósito com R$ "+ valor + " é inválido.");
+			System.out.println("Depósitos vazios geram despesas e, convencionalmente, será cobrada tarifa de depósito.");
 			return this.saldo - taxaMovimentacao;
 			}
 		else {
@@ -133,7 +142,7 @@ public abstract class Conta {
 
 	public void setNumeroDaConta(int numeroDaConta) throws ContaException {
 		if(numeroDaConta<=0)
-			throw new ContaException("Numero da conta não pode ser negativo ou igual a zero");
+			throw new ContaException("Número da conta não pode ser negativo ou igual a zero");
 			this.numeroDaConta = numeroDaConta;
 	}
 

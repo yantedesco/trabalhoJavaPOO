@@ -1,12 +1,12 @@
 ﻿poupanca;01;Yan Tedesco;11122233344;230000;0123
 poupanca;02;IgorStumpf;11122233355;5900;0123
-poupanca;03;Marcos Bet;11122233366;9000;0123
+poupanca;03;Marcos Bet;11122233366;10;0123
 poupanca;04;Brayan Cataldo;11122233377;3230;0123
 poupanca;05;Lucas Azevedo;11122233388;4555;0123
 poupanca;06;Ricardo Araujo;11122233399;1100;0123
 corrente;01;Yan Tedesco;11122233344;230000;0123
 corrente;02;IgorStumpf;11122233355;5900;0123
-corrente;03;Marcos Bet;11122233366;9000;0123
+corrente;03;Marcos Bet;11122233366;1000;0123
 corrente;04;Brayan Cataldo;11122233377;3230;0123
 corrente;05;Lucas Azevedo;11122233388;4555;0123
 corrente;06;Ricardo Araujo;11122233399;1100;0123

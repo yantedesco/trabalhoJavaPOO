@@ -42,9 +42,9 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.print("Digite o seu CPF:");
+                    System.out.print("Digite o seu CPF: ");
                     String cpf = sc.next();
-                    System.out.print("Digite sua senha:");
+                    System.out.print("Digite sua senha: ");
                     String senha = sc.next();
 
 
@@ -82,7 +82,7 @@ public class SistemaInterno {
             System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
             System.out.println("\n                   ======================");
             System.out.println("                  |  1 - SAQUE           |");
-            System.out.println("                  |  2 - DEPOSITO        |");
+            System.out.println("                  |  2 - DEPÓSITO        |");
             System.out.println("                  |  3 - TRANSFERÊNCIA   |");
             System.out.println("                  |  4 - MENU ANTERIOR   |");
             System.out.println("                  |  0 - SAIR            |");
@@ -120,7 +120,7 @@ public class SistemaInterno {
                 	menuPorTipo(usuario, contaUsuario);
                 	break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
             }
@@ -136,8 +136,8 @@ public class SistemaInterno {
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
             System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
+            System.out.println("                  |  2 - RELATÓRIOS             |");
             System.out.println("                  |  0 - SAIR                   |");
             System.out.println("                   =============================\n");
             System.out.print("Opção --> ");
@@ -152,7 +152,7 @@ public class SistemaInterno {
                     menuRelatorioCliente(usuario, contaCliente);
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -181,7 +181,7 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaCliente.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaCliente.getSaldo()));
                     break;
 
                 case 2:
@@ -206,7 +206,7 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -223,8 +223,8 @@ public class SistemaInterno {
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO GERENTE:");
             System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
+            System.out.println("                  |  2 - RELATÓRIOS             |");
             System.out.println("                  |  0 - SAIR                   |");
             System.out.println("                   =============================\n");
             System.out.print("Opção --> ");
@@ -239,7 +239,7 @@ public class SistemaInterno {
                     menuRelatorioGerente(usuario, contaUsuario);
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -297,7 +297,7 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -316,7 +316,7 @@ public class SistemaInterno {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO DIRETOR:");
             System.out.println("\n                   =============================");
             System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  2 - RELATÓRIOS             |");
             System.out.println("                  |  0 - SAIR                   |");
             System.out.println("                   =============================\n");
             System.out.print("Opção --> ");
@@ -331,7 +331,7 @@ public class SistemaInterno {
                     break;
                     
                 case 0:
-                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("Até logo, " + usuario.getNome() +"!");
                     System.out.print("\n");
                     System.exit(opcao);
 
@@ -351,7 +351,7 @@ public class SistemaInterno {
             System.out.println("                  |  1 - SALDO                               |");
             System.out.println("                  |  2 - TRIBUTAÇÃO CC                       |");
             System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
-            System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO      |");
+            System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO      |");
             System.out.println("                  |  5 - MENU ANTERIOR                       |");
             System.out.println("                  |  6 - LOGIN COM OUTRA CONTA               |");
             System.out.println("                  |  0 - SAIR                                |");
@@ -361,7 +361,7 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo()));
                     break;
 
                 case 2:
@@ -391,8 +391,9 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
+                	System.out.print("Até logo, " + usuario.getNome() +"!");
+                    System.out.print("\n");
                     System.exit(opcao);
-                    break;
 
             }
 
@@ -406,8 +407,8 @@ public class SistemaInterno {
          do {
              System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
              System.out.println("\n                   =============================");
-             System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
-             System.out.println("                  |  2 - RELATORIOS             |");
+             System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
+             System.out.println("                  |  2 - RELATÓRIOS             |");
              System.out.println("                  |  0 - SAIR                   |");
              System.out.println("                   =============================\n");
              System.out.print("Opção --> ");
@@ -422,7 +423,7 @@ public class SistemaInterno {
                 	 break;
 
                  case 0:
-                     System.out.print("Até logo!");
+                	 System.out.print("Até logo, " + usuario.getNome() +"!");
                      System.out.print("\n");
                      System.exit(opcao);
 
@@ -440,9 +441,9 @@ public class SistemaInterno {
      		System.out.println("\n                   =========================================");
      		System.out.println("                  |  1 - SALDO                              |");
      		System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-     		System.out.println("                  |  3 - RELATORIO RENDIMENTO EM POUPANÇA   |");
-     		System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO     |");
-     		System.out.println("                  |  5 - RELATORIO DE CAPITAL TOTAL         |");
+     		System.out.println("                  |  3 - RELATÓRIO RENDIMENTO EM POUPANÇA   |");
+     		System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO     |");
+     		System.out.println("                  |  5 - RELATÓRIO DE CAPITAL TOTAL         |");
      		System.out.println("                  |  6 - MENU ANTERIOR                      |");
      		System.out.println("                  |  7 - LOGIN COM OUTRA CONTA              |");
      		System.out.println("                  |  0 - SAIR                               |");
@@ -452,7 +453,7 @@ public class SistemaInterno {
      		switch (opcao) {
             case 1:
                 System.out.println("Saldo em conta" );
-                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo());
+                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo()));
                 break;
 
             case 2:
@@ -487,7 +488,7 @@ public class SistemaInterno {
      			menuPrincipal();
      			break;
      		case 0:
-                System.out.print("Até logo!");
+     			System.out.print("Até logo, " + usuario.getNome() +"!");
                 System.out.print("\n");
                 System.exit(opcao);
      			
