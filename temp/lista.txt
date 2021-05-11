@@ -4,3 +4,7 @@ Marcos Bet;03;11122233366;cliente;marcos123;0123;003
 Brayan Cataldo;04;11122233377;Gerente;brayan123;0123;004;2000.0;0002
 Lucas Azevedo;05;11122233388;cliente;lucas123;0123;005
 Ricardo Araujo;06;11122233399;Diretor;araujo123;0123;006;4000.0
+Marcelo Collares;07;11122233444;cliente;collares123;0123;007
+Alexandre Paixão;08;11122233555;cliente;paixao123;0123;008
+Silvana Penkal;09;11122233666;cliente;silvana123;0123;009
+Marcelo Carius;10;11122233777;cliente;carius123;0123;010
