@@ -6,8 +6,8 @@ public class ContaCorrente extends Conta {
 	
 	public ContaCorrente() {}
 
-	public ContaCorrente(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta) {
-		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia, tipoConta);
+	public ContaCorrente(String tipoConta, int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia) {
+		super(tipoConta, numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia);
 	}
 
 

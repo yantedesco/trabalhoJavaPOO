@@ -92,17 +92,17 @@ public class File {
                     linha = buffRead.readLine();
                     if (linha != null) {
                         String[] pp = linha.split(";");
-                        if(pp[5].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
-                            ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
-                            String cpf = pp[2];
+                        if(pp[0].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
+                            ContaCorrente cc = new ContaCorrente(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], Double.parseDouble(pp[4]), Integer.parseInt(pp[5]));
+                            String cpf = pp[3];
                             mapConta.put(cpf, cc);
 //                            (int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta)
                         }
-                        else if(pp[5].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
-                            ContaPoupanca cp = new ContaPoupanca(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
-                            String cpf = pp[2];
+                        else if(pp[0].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
+                            ContaPoupanca cp = new ContaPoupanca(pp[0], Integer.parseInt(pp[1]), pp[2], pp[3], Double.parseDouble(pp[4]), Integer.parseInt(pp[5]));
+                            String cpf = pp[3];
                             mapConta.put(cpf, cp);
-//                            (int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia, String tipoConta)
+//                          (String tipoConta, int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia)
                         }
                         
                     } else

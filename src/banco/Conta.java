@@ -18,13 +18,13 @@ import exceptions.ContaException;
 
 	public Conta() {}
 
-	public Conta(int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia, String tipoConta) {
+	public Conta(String tipoConta, int numeroDaConta,String nomeCompletoCliente,String cpfTitular,double saldo,int agencia) {
+		this.tipoConta = tipoConta;
     	this.numeroDaConta=numeroDaConta;
     	this.nomeCompletoCliente=nomeCompletoCliente;
     	this.cpfTitular=cpfTitular;
     	this.saldo=saldo;
     	this.agencia=agencia;
-    	this.tipoConta = tipoConta;
 
     }
 
