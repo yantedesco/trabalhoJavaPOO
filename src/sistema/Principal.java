@@ -15,7 +15,7 @@ public class Principal {
 
 
         File.hashMapFromFileTextUsuario(File.getPathBasico() +
-                "text"+ File.getEXTENSAO());
+                "lista"+ File.getEXTENSAO());
 
         File.hashMapFromFileTextContas(File.getPathBasico() +
                 "contas"+ File.getEXTENSAO());
