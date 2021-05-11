@@ -77,7 +77,7 @@ public class SistemaInterno {
 
 
     // menu operações de conta 
-    public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
+    public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException, NullPointerException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
@@ -96,8 +96,12 @@ public class SistemaInterno {
                     System.out.println("Quanto deseja sacar? ");
                     System.out.print("Valor: ");
                     double valorSaque = sc.nextDouble();
-                    if (contaUsuario.sacar(valorSaque)) {
-                        File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorSaque);
+                    try {
+                        contaUsuario.sacar(valorSaque);
+                        File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorSaque);
+                    }
+                    catch (NullPointerException e) {
+                        e.printStackTrace();
                     }
                     break;
 
@@ -106,12 +110,14 @@ public class SistemaInterno {
                     System.out.println("Quanto deseja depositar? ");
                     System.out.print("Valor: ");
                     double valorDeposito = sc.nextDouble();
-                    if (contaUsuario.depositar(valorDeposito)) {
-                        File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorDeposito);
+                    try {
+                        contaUsuario.depositar(valorDeposito);
+                        File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorDeposito);
+                    } catch (NullPointerException e){
+                        System.out.println(e.getMessage());
                     }
-
-
                     break;
+
                 case 3:
                     //TRANSFERÊNCIAS
                     System.out.println("Quanto deseja transferir? ");
@@ -120,8 +126,11 @@ public class SistemaInterno {
                     System.out.print("Informe o cpf do titular da conta para transferência: ");
                     String cpfDestino = sc.next();
                     Conta contaDest = pegaConta(cpfDestino);
-                    if (contaUsuario.transfere(contaDest, valorTransf)) {
-                        File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
+                    try {
+                        contaUsuario.transfere(contaDest, valorTransf);
+                        File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
+                    } catch (NullPointerException e){
+                        System.out.println(e.getMessage());
                     }
 
 
@@ -519,9 +528,9 @@ public class SistemaInterno {
     }
 
     // Método pega conta
-    public Conta pegaConta(String cpfUsuario) {
+    public Conta pegaConta(String cpf) {
         for (Conta conta : File.getMapConta().values()) {
-            if (conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)) {
+            if (conta.getCpfTitular().equalsIgnoreCase(cpf)) {
                 return conta;
             }
         }
@@ -561,5 +570,8 @@ public class SistemaInterno {
         System.out.println("===============////////////////////=============");
         System.out.println(" Grupo06 Pinguins: Lucas Azevedo, Marcos Bet, Brayan Cataldo, Igor Stumpf, Yan Tedesco, Ricardo Araújo");
 
+
     }
+
 }
+

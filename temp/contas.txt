@@ -1,5 +1,6 @@
-﻿poupanca;01;Yan Tedesco;11122233344;230000;0123
-poupanca;02;IgorStumpf;11122233355;5900;0123
+﻿
+poupanca;01;Yan Tedesco;11122233344;2300;0123
+poupanca;02;Igor Stumpf;11122233355;5900;0123
 poupanca;03;Marcos Bet;11122233366;10;0123
 poupanca;04;Brayan Cataldo;11122233377;3000;0123
 poupanca;05;Lucas Azevedo;11122233388;4000;0123

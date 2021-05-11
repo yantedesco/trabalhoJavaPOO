@@ -87,7 +87,7 @@ public class File {
             try {
 
                 BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+ "contas" +EXTENSAO));
-                String linha;
+                String linha = "";
                 while (true) {
                     linha = buffRead.readLine();
                     if (linha != null) {
@@ -132,7 +132,7 @@ public class File {
         public static void comprovanteDeposito(String path, Usuario usuario, Conta numConta, double vlrDeposito) throws IOException {
 
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-            String linha = "**********Depósito**********";
+            String linha = "******************Depósito******************";
             buffWrite.append(linha).append("\n\n\n");
 
             linha = "Nome do Titular: "+ numConta.getNomeCompletoCliente();
@@ -150,8 +150,8 @@ public class File {
             linha = "Valor do Depósito: R$ "+vlrDeposito;
             buffWrite.append("\t"+linha).append("\n");
 
-            linha = "**********Fim do Depósito**********";
-            buffWrite.append(linha).append("\n\n\n");
+            linha = "******************Fim do Depósito******************";
+            buffWrite.append("\n\n" + linha);
 
             buffWrite.close();
         }
@@ -160,7 +160,7 @@ public class File {
         public static void comprovanteSaque(String path, Usuario usuario, Conta numConta, double vlrSaque) throws IOException {
 
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-            String linha = "**********Saque**********";
+            String linha = "******************Saque******************";
             buffWrite.append(linha).append("\n\n\n");
 
             linha = "Nome do Titular: "+ numConta.getNomeCompletoCliente();
@@ -178,8 +178,8 @@ public class File {
             linha = "Saque: R$"+vlrSaque;
             buffWrite.append("\t"+linha).append("\n");
 
-            linha = "**********Fim do Saque**********";
-            buffWrite.append(linha).append("\n\n\n");
+            linha = "******************Fim do Saque******************";
+            buffWrite.append("\n\n" + linha);
 
             buffWrite.close();
         }
@@ -187,7 +187,7 @@ public class File {
         public static void comprovanteTransferencia(String path, Usuario usuario, Conta numConta, double vlrTransferencia, Conta numContaDestino) throws IOException {
 
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-            String linha = "*************Transferência*************";
+            String linha = "*********************Transferência*********************";
             buffWrite.append(linha).append("\n\n\n");
 
             linha = "Nome do Titular (Conta Origem): "+ numConta.getNomeCompletoCliente();
@@ -217,8 +217,8 @@ public class File {
             linha = "Valor Transferido: R$"+vlrTransferencia;
             buffWrite.append("\t"+linha).append("\n");
 
-            linha = "************Fim da Transferência*************";
-            buffWrite.append(linha).append("\n\n\n");
+            linha = "********************Fim da Transferência*********************";
+            buffWrite.append("\n\n" + linha);
 
 
             buffWrite.close();

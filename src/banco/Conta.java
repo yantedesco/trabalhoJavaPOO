@@ -81,6 +81,7 @@ public abstract class Conta {
 			    	   this.saldo = this.saldo - taxaMovimentacao;
 			    	   destino.saldo = destino.saldo + valor;
 			    	   this.saldo = this.saldo - taxaMovimentacao;
+			    	   totalMovimentacoes++;
 			    	   System.out.println("Transferência realizada com sucesso!!!");
 			        return true;
 			        }
@@ -185,8 +186,6 @@ public abstract class Conta {
 		throw new ContaException("Numero da agencia não pode ser negativo ou igual a zero");
 		this.agencia = agencia;
 	}
-
-
 
 
 }
