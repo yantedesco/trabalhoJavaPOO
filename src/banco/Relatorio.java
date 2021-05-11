@@ -1,6 +1,11 @@
 package banco;
 
+import Users.Usuario;
 import armazenamento.File;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Relatorio extends Conta {
 	
@@ -18,20 +23,32 @@ public class Relatorio extends Conta {
 		double totalT = totalM + super.getTarifa();
 
 		System.out.println("O valor da tarifa cobrada é de  R$"+getTarifa());
-		System.out.println("O valor total das taxas de movimentaçãoo é de R$"+totalM);
-		System.out.println("O total das tributa�oes até agora é de = R$"+totalM);
+		System.out.println("O valor total das taxas de movimentações é de R$"+totalM);
+		System.out.println("O total das tributações até agora é de = R$"+totalM);
 
 	}
 	
 	public void capitalTotal() {
 		double totalSoma = 0; 
-		double totalM = (Conta.getTotalMovimentacoes() * taxaMovimentacao) ;
+		double totalM = (Conta.getTotalMovimentacoes() * taxaMovimentacao);
 		double totalT = totalM + super.getTarifa();
 		for (Conta conta: File.getMapConta().values()) {
-			totalSoma = totalSoma + conta.getSaldo(); 
+			totalSoma = totalSoma + conta.getSaldo() + totalT;
 			
 		}
-		System.out.println(totalSoma);
+		System.out.println("O capital total do Banco dos Pinguins é de R$ " + totalSoma);
 		
+	}
+
+
+	public void nomesOrdemAlfabetica() {
+		List<Usuario> mapValues = new ArrayList<>(File.getMapUsuario().values());
+
+		mapValues.sort(Comparator.comparing(Usuario::getNome));
+
+		for (Usuario p : mapValues) {
+			System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia());
+		}
+
 	}
 }

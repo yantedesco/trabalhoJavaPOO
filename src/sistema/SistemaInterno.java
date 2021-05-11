@@ -378,7 +378,7 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                    System.out.println(File.getMapUsuario());
+                    rel.nomesOrdemAlfabetica();
                     break;
 
                 case 5:
