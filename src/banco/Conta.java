@@ -3,7 +3,9 @@ package banco;
 
 import exceptions.ContaException;
 
-	public abstract class Conta {
+import java.text.DecimalFormat;
+
+public abstract class Conta {
 	
 	private int numeroDaConta;
 	private int agencia;
@@ -156,6 +158,7 @@ import exceptions.ContaException;
 	}
 
 	public double getSaldo() {
+		new DecimalFormat("#,##0.00").format(saldo);
 		return saldo;
 	}
 
