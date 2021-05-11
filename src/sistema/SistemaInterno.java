@@ -190,14 +190,14 @@ public class SistemaInterno {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
-            System.out.println("\n                   ============================");
-            System.out.println("                  |  1 - SALDO                 |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC         |");
-            System.out.println("                  |  3 - RENDIMENTO POUPANÇA   |");
-            System.out.println("                  |  4 - MENU ANTERIOR         |");
-            System.out.println("                  |  5 - LOGIN COM OUTRA CONTA |");
-            System.out.println("                  |  0 - SAIR                  |");
-            System.out.println("                   ============================\n");
+            System.out.println("\n                   ===========================================");
+            System.out.println("                  |  1 - SALDO                                |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO DE CONTA                  |");
+            System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA  |");
+            System.out.println("                  |  4 - MENU ANTERIOR                        |");
+            System.out.println("                  |  5 - LOGIN COM OUTRA CONTA                |");
+            System.out.println("                  |  0 - SAIR                                 |");
+            System.out.println("                   ===========================================\n");
             System.out.print("Opção --> ");
             opcao = sc.nextInt();
             switch (opcao) {
@@ -208,7 +208,7 @@ public class SistemaInterno {
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaCliente);
+                    rel.tributacao(contaCliente); //tratar com erro personalizado e verificar onde tributa.
                     break;
 
                 case 3:
@@ -276,15 +276,15 @@ public class SistemaInterno {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
-            System.out.println("\n                   =========================================");
-            System.out.println("                  |  1 - SALDO                              |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-            System.out.println("                  |  3 - RENDIMENTO POUPANÇA                |");
-            System.out.println("                  |  4 - CONTAS NA MESMA AGÊNCIA            |");
-            System.out.println("                  |  5 - MENU ANTERIOR                      |");
-            System.out.println("                  |  6 - LOGIN COM OUTRA CONTA              |");
-            System.out.println("                  |  0 - SAIR                               |");
-            System.out.println("                   =========================================\n");
+            System.out.println("\n                   ==========================================");
+            System.out.println("                  |  1 - SALDO                               |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO DE CONTA                 |");
+            System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
+            System.out.println("                  |  4 - CONTAS NA MESMA AGÊNCIA             |");
+            System.out.println("                  |  5 - MENU ANTERIOR                       |");
+            System.out.println("                  |  6 - LOGIN COM OUTRA CONTA               |");
+            System.out.println("                  |  0 - SAIR                                |");
+            System.out.println("                   ==========================================\n");
             System.out.print("Opção --> ");
             opcao = sc.nextInt();
             switch (opcao) {
@@ -373,7 +373,7 @@ public class SistemaInterno {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO DIRETOR :");
             System.out.println("\n                   ==========================================");
             System.out.println("                  |  1 - SALDO                               |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC                       |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO DE CONTA                 |");
             System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
             System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO      |");
             System.out.println("                  |  5 - RELATÓRIO DE CLIENTES POR AGÊNCIA   |");
@@ -469,17 +469,17 @@ public class SistemaInterno {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO PRESIDENTE :");
-            System.out.println("\n                   =========================================");
-            System.out.println("                  |  1 - SALDO                              |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-            System.out.println("                  |  3 - RELATÓRIO RENDIMENTO EM POUPANÇA   |");
-            System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO     |");
-            System.out.println("                  |  5 - RELATÓRIO DE CLIENTES POR AGÊNCIA  |");
-            System.out.println("                  |  6 - RELATÓRIO DE CAPITAL TOTAL         |");
-            System.out.println("                  |  7 - MENU ANTERIOR                      |");
-            System.out.println("                  |  8 - LOGIN COM OUTRA CONTA              |");
-            System.out.println("                  |  0 - SAIR                               |");
-            System.out.println("                   =========================================\n");
+            System.out.println("\n                   ==========================================");
+            System.out.println("                  |  1 - SALDO                               |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO DE CONTA                 |");
+            System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
+            System.out.println("                  |  4 - RELATÓRIO DE CLIENTES DO BANCO      |");
+            System.out.println("                  |  5 - RELATÓRIO DE CLIENTES POR AGÊNCIA   |");
+            System.out.println("                  |  6 - RELATÓRIO DE CAPITAL TOTAL          |");
+            System.out.println("                  |  7 - MENU ANTERIOR                       |");
+            System.out.println("                  |  8 - LOGIN COM OUTRA CONTA               |");
+            System.out.println("                  |  0 - SAIR                                |");
+            System.out.println("                   ==========================================\n");
             System.out.print("Opção --> ");
             opcao = sc.nextInt();
             switch (opcao) {
