@@ -16,14 +16,14 @@ public class SistemaInterno {
 
 
     // menu principal
-    public void menuPrincipal() {
+    public void menuPrincipal() throws InterruptedException {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
         login();        
     }
 
     //Login menu
-    public void login() {
+    public void login() throws InterruptedException{
 
 
         System.out.print("=============================================");
@@ -55,6 +55,7 @@ public class SistemaInterno {
                         System.out.print("Login efetuado! Bem vindo!");
                         System.out.print("\n");
                         System.out.print("Quase lá, você será redirecionado...");
+                        Thread.sleep(2000);
                         System.out.print("\n");
                         //for each para pegar as contas
 
@@ -76,7 +77,7 @@ public class SistemaInterno {
     
     
     // menu operações de conta 
-    public void menuOpConta(Usuario usuario, Conta contaUsuario) {
+    public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
@@ -131,7 +132,7 @@ public class SistemaInterno {
     
 
     // menu cliente
-    public void menuCliente(Usuario usuario, Conta contaCliente) {
+    public void menuCliente(Usuario usuario, Conta contaCliente) throws InterruptedException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
@@ -164,7 +165,7 @@ public class SistemaInterno {
 
     
     //menu relatorios cliente
-    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) {
+    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente)throws InterruptedException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
@@ -218,7 +219,7 @@ public class SistemaInterno {
 
         
     // menu gerente
-    public void menuGerente(Usuario usuario, Conta contaUsuario) {
+    public void menuGerente(Usuario usuario, Conta contaUsuario) throws InterruptedException{
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO GERENTE:");
@@ -250,7 +251,7 @@ public class SistemaInterno {
     }    
     
     //menu relatorios gerente
-    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) {
+    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) throws InterruptedException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
@@ -309,7 +310,7 @@ public class SistemaInterno {
     
     
     // menu diretor
-    public void menuDiretor(Usuario usuario, Conta contaUsuario) {
+    public void menuDiretor(Usuario usuario, Conta contaUsuario) throws InterruptedException {
         
         int opcao;
         do {
@@ -343,7 +344,7 @@ public class SistemaInterno {
     
     
 // menu relatorio diretor
-     public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) {
+     public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) throws InterruptedException {
         int opcao;
         do {
             System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO DIRETOR :");
@@ -402,7 +403,7 @@ public class SistemaInterno {
     }
 
      // menu area presidente
-     public void menuPresidente(Usuario usuario, Conta contaPresidente) {
+     public void menuPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException {
          int opcao;
          do {
              System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
@@ -434,7 +435,7 @@ public class SistemaInterno {
      }
      
      // menu relatorio Presidente
-     public void menuRelatorioPresidente(Usuario usuario, Conta contaPresidente) {
+     public void menuRelatorioPresidente(Usuario usuario, Conta contaPresidente) throws InterruptedException {
      	int opcao;
      	do {
      		System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO PRESIDENTE :");
@@ -519,7 +520,7 @@ public class SistemaInterno {
      }
 
      
-     public void menuPorTipo(Usuario usuario, Conta contaUsuario) {
+     public void menuPorTipo(Usuario usuario, Conta contaUsuario) throws InterruptedException {
     	 if (usuario.getTipo().equalsIgnoreCase("diretor")) {
     		 menuDiretor(usuario, contaUsuario);
     	 } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
