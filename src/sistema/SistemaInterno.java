@@ -5,6 +5,7 @@ import armazenamento.File;
 import banco.Conta;
 import banco.Relatorio;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class SistemaInterno {
@@ -267,7 +268,7 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaGerente.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+  new DecimalFormat("#,##0.00").format(contaGerente.getSaldo()) );
                     break;
 
                 case 2:
