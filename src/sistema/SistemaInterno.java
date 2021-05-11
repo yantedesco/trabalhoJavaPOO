@@ -18,348 +18,8 @@ public class SistemaInterno {
     public void menuPrincipal() {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
-        login();
-        
-
-
-
-        
+        login();        
     }
-
-    // menu cliente
-    public void menuCliente(Usuario usuario, Conta contaCliente) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
-            System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
-            System.out.println("                  |  3 - MENU PRINCIPAL         |");
-            System.out.println("                  |  0 - SAIR                   |");
-            System.out.println("                   =============================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    //MENU DE CONTA;
-                    menuOpConta(usuario, contaCliente);
-                    break;
-                case 2:
-                    //MENU RELAATORIOS;
-                    menuRelatorioCliente(usuario, contaCliente);
-                    break;
-                case 3:
-                    menuPrincipal();
-                    break;
-                case 0:
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
-    //menu operações de conta cliente
-    /*public void menuOpContaCliente() {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA :");
-            System.out.println("\n                   ======================");
-            System.out.println("                  |  1 - SAQUE           |");
-            System.out.println("                  |  2 - DEPOSITO        |");
-            System.out.println("                  |  3 - TRANSFERÊNCIA   |");
-            System.out.println("                  |  4 - MENU ANTERIOR   |");
-            System.out.println("                  |  5 - MENU PRINCIPAL  |");
-            System.out.println("                  |  0 - SAIR            |");
-            System.out.println("                   ======================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    //SAQUE;
-                    //           sacar();
-//                    File.escritor(File.getPathBasico() +
-//                            usuario.getNome() + "_" + usuario.getCpf() + File.getEXTENSAO());
-                    break;
-
-                case 2:
-                    //DEPOSITO;
-                    //            depositar();
-                    break;
-                case 3:
-                    //TRANSFERÊNCIAS;
-                    //            transferir();
-                    break;
-                case 4:
-                    // VOLTA MENU ANT.
-                    menuCliente();
-                    break;
-                case 5:
-                    //VOLTA MENU PRINC.
-                    menuPrincipal();
-                    break;
-                case 0:
-                    //SAIR
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }*/
-
-    //menu relatorios cliente
-    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
-            System.out.println("\n                   ===========================");
-            System.out.println("                  |  1 - SALDO                |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC        |");
-            System.out.println("                  |  3 - RENDIMENTO POUPANÇA  |");
-            System.out.println("                  |  4 - MENU ANTERIOR        |");
-            System.out.println("                  |  5 - MENU PRINCIPAL       |");
-            System.out.println("                  |  0 - SAIR                 |");
-            System.out.println("                   ===========================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaCliente.getSaldo());
-                    break;
-
-                case 2:
-                    //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaCliente);
-                    break;
-
-                case 3:
-                    //				RELATORIO RENDIMENTO POUPANÇA;
-                    System.out.print("Qual valor você deseja simular? ");
-                    double valor = sc.nextDouble();
-                    System.out.print("Qual a duração do investimento? ");
-                    int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
-                    break;
-                case 4:
-                    // VOLTA MENU ANT.
-                   
-                    break;
-
-                case 5:
-                    //VOLTA MENU PRINC.
-                    menuPrincipal();
-                    break;
-                case 0:
-                    //SAIR
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
-    // menu gerente
-    public void menuGerente(Usuario usuario, Conta contaUsuario) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
-            System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
-            System.out.println("                  |  3 - MENU PRINCIPAL         |");
-            System.out.println("                  |  0 - SAIR                   |");
-            System.out.println("                   =============================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    //MENU DE CONTA;
-                    menuOpConta(usuario, contaUsuario);
-                    break;
-                case 2:
-                    //MENU RELATORIOS;
-                    menuRelatorioGerente(usuario, contaUsuario);
-                    break;
-                case 3:
-                    menuPrincipal();
-                    break;
-                case 0:
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
-    // menu operações de conta gerente
-    public void menuOpConta(Usuario usuario, Conta contaUsuario) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
-            System.out.println("\n                   ======================");
-            System.out.println("                  |  1 - SAQUE           |");
-            System.out.println("                  |  2 - DEPOSITO        |");
-            System.out.println("                  |  3 - TRANSFERÊNCIA   |");
-            System.out.println("                  |  0 - MENU ANTERIOR   |");
-            System.out.println("                   ======================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    //SAQUE;
-                    System.out.println("Quanto deseja sacar? ");
-                    System.out.print("Valor: ");
-                    double valorSaque = sc.nextDouble();
-                    contaUsuario.sacar(valorSaque);
-                    break;
-
-                case 2:
-                    //DEPOSITO;
-                    System.out.println("Quanto deseja depositar? ");
-                    System.out.print("Valor: ");
-                    double valorDeposito = sc.nextDouble();
-                    contaUsuario.depositar(valorDeposito);
-                    
-                    break;
-                case 3:
-                    //TRANSFERÊNCIAS
-                    System.out.println("Quanto deseja transferir? ");
-                    System.out.print("Valor: ");
-                    double valorTransf = sc.nextDouble();
-                    System.out.print("Informe o cpf do titular da conta para transferência: ");
-                    String cpfDestino = sc.next();
-                    Conta contaDest = pegaConta(cpfDestino);
-                    contaUsuario.transfere(contaDest, valorTransf);
-                    break;
-                case 0:
-                    // VOLTA MENU ANT.
-                    break;
-            }
-
-        } while (opcao != 0);
-
-    }
-
-    //menu relatorios gerente
-    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
-            System.out.println("\n                   =========================================");
-            System.out.println("                  |  1 - SALDO                              |");
-            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
-            System.out.println("                  |  3 - RENDIMENTO POUPANÇA                |");
-            System.out.println("                  |  4 - NÚMERO DE CONTAS NA MESMA AGÊNCIA  |");
-            System.out.println("                  |  5 - MENU ANTERIOR                      |");
-            System.out.println("                  |  6 - MENU PRINCIPAL                     |");
-            System.out.println("                  |  0 - SAIR                               |");
-            System.out.println("                   =========================================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaGerente.getSaldo());
-                    break;
-
-                case 2:
-                    //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaGerente);
-                    break;
-
-                case 3:
-                    //				RELATORIO RENDIMENTO POUPANÇA;
-                    System.out.print("Qual valor você deseja simular? ");
-                    double valor = sc.nextDouble();
-                    System.out.print("Qual a duração do investimento? ");
-                    int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
-                    break;
-
-                case 4:
-                    //				Relatório do número contas na mesma agência em que este gerente trabalha
-
-                    break;
-
-                case 5:
-                    // VOLTA MENU ANT.
-                    break;
-
-                case 6:
-                    //VOLTA MENU PRINC.
-                    menuPrincipal();
-                    break;
-                case 0:
-                    //SAIR
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
-
-    // menu diretor
-    public void menuDiretor(Usuario usuario, Conta contaUsuario) {
-        
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO DIRETOR:");
-            System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
-            System.out.println("                  |  2 - RELATORIOS             |");
-            System.out.println("                  |  0 - SAIR                   |");
-            System.out.println("                   =============================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    menuOpConta(usuario, contaUsuario);
-                    break;
-
-                case 2:
-                    menuRelatorioDiretor(usuario, contaUsuario);
-                    break;
-                case 0:
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
-    // menu diretor
-    public void menuPresidente(Usuario usuario, Conta contaUsuario) {
-        int opcao;
-        do {
-            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
-            System.out.println("\n                   =============================");
-            System.out.println("                  |  1 - RELATORIOS             |");
-            System.out.println("                  |  0 - SAIR                   |");
-            System.out.println("                   =============================\n");
-            System.out.print("Opção --> ");
-            opcao = sc.nextInt();
-            switch (opcao) {
-                case 1:
-                    //RELATORIO PRESIDENTE
-                    break;
-
-                case 0:
-                    break;
-
-            }
-
-        } while (opcao != 0);
-
-    }
-
 
     //Login menu
     public void login() {
@@ -390,7 +50,6 @@ public class SistemaInterno {
 
                     Usuario usuario = verificaLogin(cpf, senha);
                     Conta contaUsuario = pegaConta(cpf);
-                    int numConta = usuario.getNumeroConta();
                     if (usuario != null) {
                         System.out.print("Login efetuado! Bem vindo!");
                         System.out.print("\n");
@@ -398,17 +57,7 @@ public class SistemaInterno {
                         System.out.print("\n");
                         //for each para pegar as contas
 
-
-                        if (usuario.getTipo().equalsIgnoreCase("diretor")) {
-                            menuDiretor(usuario, contaUsuario);
-                        } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
-                            menuCliente(usuario, contaUsuario);
-                        } else if (usuario.getTipo().equalsIgnoreCase("presidente")) {
-                            menuPresidente(usuario,contaUsuario);
-                        } else if (usuario.getTipo().equalsIgnoreCase("gerente")) {
-                            menuGerente(usuario, contaUsuario);
-                        }
-
+                        menuPorTipo(usuario, contaUsuario);
 
                     } else {
                         System.out.print("Usuário não reconhecido, tente novamente.");
@@ -418,22 +67,281 @@ public class SistemaInterno {
                 case 0:
                     System.out.print("Até logo!");
                     System.out.print("\n");
-                default:
-                    System.out.print("Erro na leitura!");
-                    System.out.print("\n");
+                    System.exit(opcao);
+                    
             }
         }
+    }
+    
+    
+    // menu operações de conta 
+    public void menuOpConta(Usuario usuario, Conta contaUsuario) {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - MOVIMENTAÇÕES DE CONTA:");
+            System.out.println("\n                   ======================");
+            System.out.println("                  |  1 - SAQUE           |");
+            System.out.println("                  |  2 - DEPOSITO        |");
+            System.out.println("                  |  3 - TRANSFERÊNCIA   |");
+            System.out.println("                  |  4 - MENU ANTERIOR   |");
+            System.out.println("                  |  0 - SAIR            |");
+            System.out.println("                   ======================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    //SAQUE;
+                    System.out.println("Quanto deseja sacar? ");
+                    System.out.print("Valor: ");
+                    double valorSaque = sc.nextDouble();
+                    contaUsuario.sacar(valorSaque);
+                    break;
+
+                case 2:
+                    //DEPOSITO;
+                    System.out.println("Quanto deseja depositar? ");
+                    System.out.print("Valor: ");
+                    double valorDeposito = sc.nextDouble();
+                    contaUsuario.depositar(valorDeposito);
+                    
+                    break;
+                case 3:
+                    //TRANSFERÊNCIAS
+                    System.out.println("Quanto deseja transferir? ");
+                    System.out.print("Valor: ");
+                    double valorTransf = sc.nextDouble();
+                    System.out.print("Informe o cpf do titular da conta para transferência: ");
+                    String cpfDestino = sc.next();
+                    Conta contaDest = pegaConta(cpfDestino);
+                    contaUsuario.transfere(contaDest, valorTransf);
+                    break;
+                case 4:
+                	menuPorTipo(usuario, contaUsuario);
+                	break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+            }
+
+        } while (opcao != 0);
+
+    }
+    
+
+    // menu cliente
+    public void menuCliente(Usuario usuario, Conta contaCliente) {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO CLIENTE:");
+            System.out.println("\n                   =============================");
+            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
+            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  0 - SAIR                   |");
+            System.out.println("                   =============================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    //MENU DE CONTA;
+                    menuOpConta(usuario, contaCliente);
+                    break;
+                case 2:
+                    //MENU RELAATORIOS;
+                    menuRelatorioCliente(usuario, contaCliente);
+                    break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+
+            }
+
+        } while (opcao != 0);
+
     }
 
-    //Método verificar login
-    public Usuario verificaLogin(String cpf, String senha) {
-        for (Usuario user : File.getMapUsuario().values()) {
-            if ((user.getCpf().equalsIgnoreCase(cpf)) && (user.getSenha().equalsIgnoreCase(senha))) {
-                return user;
+    
+    //menu relatorios cliente
+    public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO :");
+            System.out.println("\n                   ============================");
+            System.out.println("                  |  1 - SALDO                 |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO CC         |");
+            System.out.println("                  |  3 - RENDIMENTO POUPANÇA   |");
+            System.out.println("                  |  4 - MENU ANTERIOR         |");
+            System.out.println("                  |  5 - LOGIN COM OUTRA CONTA |");
+            System.out.println("                  |  0 - SAIR                  |");
+            System.out.println("                   ============================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    System.out.println("Saldo em conta" );
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaCliente.getSaldo());
+                    break;
+
+                case 2:
+                    //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaCliente);
+                    break;
+
+                case 3:
+                    //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
+                    break;
+                case 4:
+                	menuPorTipo(usuario, contaCliente);                   
+                    break;
+
+                case 5:
+                    //VOLTA MENU PRINC.
+                    menuPrincipal();
+                    break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+
             }
-        }
-        return null;
+
+        } while (opcao != 0);
+
     }
+
+        
+    // menu gerente
+    public void menuGerente(Usuario usuario, Conta contaUsuario) {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO GERENTE:");
+            System.out.println("\n                   =============================");
+            System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
+            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  0 - SAIR                   |");
+            System.out.println("                   =============================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    //MENU DE CONTA;
+                    menuOpConta(usuario, contaUsuario);
+                    break;
+                case 2:
+                    //MENU RELATORIOS;
+                    menuRelatorioGerente(usuario, contaUsuario);
+                    break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+
+            }
+
+        } while (opcao != 0);
+
+    }    
+    
+    //menu relatorios gerente
+    public void menuRelatorioGerente(Usuario usuario, Conta contaGerente) {
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO GERENTE :");
+            System.out.println("\n                   =========================================");
+            System.out.println("                  |  1 - SALDO                              |");
+            System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
+            System.out.println("                  |  3 - RENDIMENTO POUPANÇA                |");
+            System.out.println("                  |  4 - NÚMERO DE CONTAS NA MESMA AGÊNCIA  |");
+            System.out.println("                  |  5 - MENU ANTERIOR                      |");
+            System.out.println("                  |  6 - LOGIN COM OUTRA CONTA              |");
+            System.out.println("                  |  0 - SAIR                               |");
+            System.out.println("                   =========================================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    System.out.println("Saldo em conta" );
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaGerente.getSaldo());
+                    break;
+
+                case 2:
+                    //				RELATORIO TRIBUTAÇÃO CC;
+                    rel.tributacao(contaGerente);
+                    break;
+
+                case 3:
+                    //				RELATORIO RENDIMENTO POUPANÇA;
+                    System.out.print("Qual valor você deseja simular? ");
+                    double valor = sc.nextDouble();
+                    System.out.print("Qual a duração do investimento? ");
+                    int dias = sc.nextInt();
+                    rel.simulaPoupanca(valor, dias);
+                    break;
+
+                case 4:
+                    //				Relatório do número contas na mesma agência em que este gerente trabalha
+
+                    break;
+
+                case 5:
+                	menuPorTipo(usuario, contaGerente);
+                	break;
+                case 6:
+                    menuPrincipal();
+                    break;
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+
+            }
+
+        } while (opcao != 0);
+
+    }
+    
+    
+    // menu diretor
+    public void menuDiretor(Usuario usuario, Conta contaUsuario) {
+        
+        int opcao;
+        do {
+            System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO DIRETOR:");
+            System.out.println("\n                   =============================");
+            System.out.println("                  |  1 - MOVIMENTAÇÕES DE CONTA |");
+            System.out.println("                  |  2 - RELATORIOS             |");
+            System.out.println("                  |  0 - SAIR                   |");
+            System.out.println("                   =============================\n");
+            System.out.print("Opção --> ");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    menuOpConta(usuario, contaUsuario);
+                    break;
+
+                case 2:
+                    menuRelatorioDiretor(usuario, contaUsuario);
+                    break;
+                    
+                case 0:
+                    System.out.print("Até logo, " + usuario.getNome());
+                    System.out.print("\n");
+                    System.exit(opcao);
+
+            }
+
+        } while (opcao != 0);
+
+    }
+    
+    
+// menu relatorio diretor
      public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) {
         int opcao;
         do {
@@ -444,7 +352,7 @@ public class SistemaInterno {
             System.out.println("                  |  3 - SIMULAÇÃO DE RENDIMENTO EM POUPANÇA |");
             System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO      |");
             System.out.println("                  |  5 - MENU ANTERIOR                       |");
-            System.out.println("                  |  6 - MENU PRINCIPAL                      |");
+            System.out.println("                  |  6 - LOGIN COM OUTRA CONTA               |");
             System.out.println("                  |  0 - SAIR                                |");
             System.out.println("                   ==========================================\n");
             System.out.print("Opção --> ");
@@ -474,7 +382,7 @@ public class SistemaInterno {
                     break;
 
                 case 5:
-                    // VOLTA MENU ANT.
+                	menuPorTipo(usuario, contaDiretor);
                     break;
 
                 case 6:
@@ -482,23 +390,144 @@ public class SistemaInterno {
                     menuPrincipal();
                     break;
                 case 0:
-                    //SAIR
+                    System.exit(opcao);
                     break;
 
             }
 
         } while (opcao != 0);
-
+        
     }
-     public Conta pegaConta(String cpfUsuario){
-        for (Conta conta : File.getMapConta().values()){
-            if(conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)){
-               return conta;
-            }
-        }
+
+     // menu area presidente
+     public void menuPresidente(Usuario usuario, Conta contaPresidente) {
+         int opcao;
+         do {
+             System.out.println("\n\n BANCO DOS PINGUINS - ÁREA DO PRESIDENTE:");
+             System.out.println("\n                   =============================");
+             System.out.println("                  |  1 - MOVIMENTACOES DE CONTA |");
+             System.out.println("                  |  2 - RELATORIOS             |");
+             System.out.println("                  |  0 - SAIR                   |");
+             System.out.println("                   =============================\n");
+             System.out.print("Opção --> ");
+             opcao = sc.nextInt();
+             switch (opcao) {
+                 case 1:
+                     menuOpConta(usuario, contaPresidente);
+                     break;
+                 case 2:
+                	//RELATORIO PRESIDENTE
+                	 menuRelatorioPresidente(usuario, contaPresidente);
+                	 break;
+
+                 case 0:
+                     System.out.print("Até logo!");
+                     System.out.print("\n");
+                     System.exit(opcao);
+
+             }
+
+         } while (opcao != 0);
+
+     }
+     
+     // menu relatorio Presidente
+     public void menuRelatorioPresidente(Usuario usuario, Conta contaPresidente) {
+     	int opcao;
+     	do {
+     		System.out.println("\n\n BANCO DOS PINGUINS - RELATÓRIO PRESIDENTE :");
+     		System.out.println("\n                   =========================================");
+     		System.out.println("                  |  1 - SALDO                              |");
+     		System.out.println("                  |  2 - TRIBUTAÇÃO CC                      |");
+     		System.out.println("                  |  3 - RELATORIO RENDIMENTO EM POUPANÇA   |");
+     		System.out.println("                  |  4 - RELATORIO DE CLIENTES DO BANCO     |");
+     		System.out.println("                  |  5 - RELATORIO DE CAPITAL TOTAL         |");
+     		System.out.println("                  |  6 - MENU ANTERIOR                      |");
+     		System.out.println("                  |  7 - LOGIN COM OUTRA CONTA              |");
+     		System.out.println("                  |  0 - SAIR                               |");
+     		System.out.println("                   =========================================\n");
+     		System.out.print("Opção --> ");
+     		opcao = sc.nextInt();
+     		switch (opcao) {
+            case 1:
+                System.out.println("Saldo em conta" );
+                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaPresidente.getSaldo());
+                break;
+
+            case 2:
+                //				RELATORIO TRIBUTAÇÃO CC;
+                rel.tributacao(contaPresidente);
+                break;
+
+            case 3:
+                //				RELATORIO RENDIMENTO POUPANÇA;
+                System.out.print("Qual valor você deseja simular? ");
+                double valor = sc.nextDouble();
+                System.out.print("Qual a duração do investimento? ");
+                int dias = sc.nextInt();
+                rel.simulaPoupanca(valor, dias);
+                break;
+
+            case 4:
+                System.out.println(File.getMapUsuario());
+                break;
+     			
+     		case 5:
+     			// 			RELATORIO TOTAL DE CAPITAL
+     			rel.capitalTotal();
+     			break;
+     			
+     		case 6:
+     			menuPorTipo(usuario, contaPresidente);
+     			break;
+     			
+     		case 7:
+     			//VOLTA MENU PRINC.
+     			menuPrincipal();
+     			break;
+     		case 0:
+                System.out.print("Até logo!");
+                System.out.print("\n");
+                System.exit(opcao);
+     			
+     		}
+     		
+     	} while (opcao != 0);
+     	
+     }
+     
+     //Método verificar login
+     public Usuario verificaLogin(String cpf, String senha) {
+         for (Usuario user : File.getMapUsuario().values()) {
+             if ((user.getCpf().equalsIgnoreCase(cpf)) && (user.getSenha().equalsIgnoreCase(senha))) {
+                 return user;
+             }
+         }
          return null;
-    }
+     }  
 
+     // Método pega conta
+     public Conta pegaConta(String cpfUsuario){
+         for (Conta conta : File.getMapConta().values()){
+             if(conta.getCpfTitular().equalsIgnoreCase(cpfUsuario)){
+                return conta;
+             }
+         }
+          return null;
+     }
+
+     
+     public void menuPorTipo(Usuario usuario, Conta contaUsuario) {
+    	 if (usuario.getTipo().equalsIgnoreCase("diretor")) {
+    		 menuDiretor(usuario, contaUsuario);
+    	 } else if (usuario.getTipo().equalsIgnoreCase("cliente")) {
+    		 menuCliente(usuario, contaUsuario);
+    	 } else if (usuario.getTipo().equalsIgnoreCase("presidente")) {
+    		 menuPresidente(usuario,contaUsuario);
+    	 } else if (usuario.getTipo().equalsIgnoreCase("gerente")) {
+    		 menuGerente(usuario, contaUsuario);
+    	 }
+     }
 
     public void imprimePinguin() {
         System.out.println("========================***=====================");

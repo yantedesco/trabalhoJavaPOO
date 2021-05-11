@@ -85,25 +85,29 @@ public class File {
 
          public static void hashMapFromFileTextContas(String path){
             try {
-                BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+path));
+                BufferedReader buffRead = new BufferedReader(new FileReader(PATH_BASICO+ "contas" +EXTENSAO));
                 String linha = "";
                 while (true) {
                     linha = buffRead.readLine();
                     if (linha != null) {
                         String[] pp = linha.split(";");
-                        if(pp[0].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
+                        if(pp[5].equalsIgnoreCase(ContaTipoEnum.CORRENTE.getTipo())) {
                             ContaCorrente cc = new ContaCorrente(Integer.parseInt(pp[0]),pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
-                            System.out.println(cc);
-                            mapConta.put("corrente", cc);
+                            String cpf = pp[2];
+                            mapConta.put(cpf, cc);
+//                            (int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia,String tipoConta)
                         }
-                        else if(pp[0].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
+                        else if(pp[5].equalsIgnoreCase(ContaTipoEnum.POUPANCA.getTipo())) {
                             ContaPoupanca cp = new ContaPoupanca(Integer.parseInt(pp[0]), pp[1], pp[2], Double.parseDouble(pp[3]), Integer.parseInt(pp[4]), pp[5]);
-                            System.out.println(cp);
-                            mapConta.put("poupanca", cp);
+                            String cpf = pp[2];
+                            mapConta.put(cpf, cp);
+//                            (int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia, String tipoConta)
                         }
+                        
                     } else
                         break;
                 }
+                buffRead.close();
          
             }catch (Exception e) {
                  e.printStackTrace();

@@ -1,4 +1,7 @@
 package banco;
+
+import armazenamento.File;
+
 public class Relatorio extends Conta {
 	
 	public Relatorio() {}
@@ -11,12 +14,24 @@ public class Relatorio extends Conta {
 	}
 
 	public void tributacao(Conta conta) {
-		double totalM = (Conta.getTotalMovimentacoes() * taxaMovimentacao) ;
+		double totalM = (conta.getTotalMovimentacoes() * taxaMovimentacao) ;
 		double totalT = totalM + super.getTarifa();
 
 		System.out.println("O valor da tarifa cobrada é de  R$"+getTarifa());
 		System.out.println("O valor total das taxas de movimentaçãoo é de R$"+totalM);
 		System.out.println("O total das tributa�oes até agora é de = R$"+totalM);
 
+	}
+	
+	public void capitalTotal() {
+		double totalSoma = 0; 
+		double totalM = (Conta.getTotalMovimentacoes() * taxaMovimentacao) ;
+		double totalT = totalM + super.getTarifa();
+		for (Conta conta: File.getMapConta().values()) {
+			totalSoma = totalSoma + conta.getSaldo(); 
+			
+		}
+		System.out.println(totalSoma);
+		
 	}
 }

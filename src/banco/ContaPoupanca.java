@@ -5,7 +5,7 @@ public class ContaPoupanca extends Conta{
 
 	public ContaPoupanca() {}
 
-	// FINAL DO TRABALHO, IGOR VAI TIRAR O NOMECOMPLETO E MUDAR OS CONSTRUTORES TODINHOS :)
+	
 	public ContaPoupanca(int numeroDaConta, String nomeCompletoCliente, String cpfTitular, double saldo, int agencia, String tipoConta) {
 		super(numeroDaConta, nomeCompletoCliente, cpfTitular, saldo, agencia, tipoConta);
 
