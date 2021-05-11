@@ -181,7 +181,7 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaCliente.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaCliente.getSaldo());
                     break;
 
                 case 2:
@@ -361,7 +361,7 @@ public class SistemaInterno {
             switch (opcao) {
                 case 1:
                     System.out.println("Saldo em conta" );
-                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaDiretor.getSaldo());
+                    System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo());
                     break;
 
                 case 2:
@@ -452,7 +452,7 @@ public class SistemaInterno {
      		switch (opcao) {
             case 1:
                 System.out.println("Saldo em conta" );
-                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ contaPresidente.getSaldo());
+                System.out.println("O saldo atual de "+ usuario.getNome()+" em conta é de R$ "+ new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo());
                 break;
 
             case 2:
