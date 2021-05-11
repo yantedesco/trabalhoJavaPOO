@@ -20,6 +20,9 @@ public class SistemaInterno {
     public void menuPrincipal() throws InterruptedException, IOException {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
+        File.logoPinguinP();
+        Thread.sleep(5000);
+
         login();
     }
 
