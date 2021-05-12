@@ -12,7 +12,7 @@ public class Presidente extends Funcionario {
 
     @Override
     public String toString() {
-        return "Presidente: \nNome: " + nome +
+        return "Presidente: \nNome: " + getNome() +
                 "\nSalario: " + getSalario() +
                 "\nNome: " + getNome() +
                 "\nId: " + getId() +

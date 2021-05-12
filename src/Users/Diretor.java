@@ -12,7 +12,7 @@ public class Diretor extends Funcionario {
 
     @Override
     public String toString() {
-        return "Diretor: \n[Nome: " + nome +
+        return "Diretor: \n[Nome: " + getNome() +
                 "\nSalario: " + getSalario() +
                 "\nNome: " + getNome() +
                 "\nId: " + getId() +

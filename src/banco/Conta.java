@@ -1,7 +1,5 @@
 package banco;
 
-import exceptions.ContaException;
-
 import java.text.DecimalFormat;
 
 public abstract class Conta {
@@ -45,17 +43,6 @@ public abstract class Conta {
     public static double getTarifa() {
         return tarifa;
     }
-
-
-    //********************************************************************************************************************
-    //  DEPOSITO
-
-    public void setTarifa(double tarifa) {
-        Conta.tarifa = tarifa;
-    }
-
-
-    //********************************************************************************************************************
 
     public static double getTaxaMovimentacao() {
         return taxaMovimentacao;
@@ -130,30 +117,12 @@ public abstract class Conta {
         return numeroDaConta;
     }
 
-    public void setNumeroDaConta(int numeroDaConta) throws ContaException {
-        if (numeroDaConta <= 0)
-            throw new ContaException("Número da conta não pode ser negativo ou igual a zero");
-        this.numeroDaConta = numeroDaConta;
-    }
-
     public String getNomeCompletoCliente() {
         return nomeCompletoCliente;
     }
 
-    public void setNomeCompletoCliente(String nomeCompletoCliente) throws ContaException {
-        if (nomeCompletoCliente == null)
-            throw new ContaException("Nome completo não pode ser nulo. Favor preencher o campo corretamente");
-        this.nomeCompletoCliente = nomeCompletoCliente;
-    }
-
     public String getCpfTitular() {
         return cpfTitular;
-    }
-
-    public void setCpfTitular(String cpfTitular) throws ContaException {
-        if (cpfTitular == null)
-            throw new ContaException("CPF não pode ser nulo. Favor preencher todos os campos");
-        this.cpfTitular = cpfTitular;
     }
 
     public double getSaldo() {
@@ -161,19 +130,7 @@ public abstract class Conta {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
     public int getAgencia() {
         return agencia;
     }
-
-    public void setAgencia(int agencia) throws ContaException {
-        if (agencia <= 0)
-            throw new ContaException("Numero da agencia não pode ser negativo ou igual a zero");
-        this.agencia = agencia;
-    }
-
-
 }

@@ -5,7 +5,6 @@ import Users.*;
 import banco.Conta;
 import banco.ContaCorrente;
 import banco.ContaPoupanca;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import enumm.ContaTipoEnum;
 import enumm.UsuarioTipoEnum;
 
@@ -109,11 +108,11 @@ public class File {
     public static void comprovanteDeposito(String path, Usuario usuario, Conta numConta, double vlrDeposito) throws IOException {
 
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        String linha = "******************Depósito******************";
+        String linha = "******************Depósito*************************";
         buffWrite.append(linha).append("\n\n\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         linha = "Nome do Titular: " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
@@ -148,7 +147,7 @@ public class File {
         buffWrite.append(linha).append("\n\n\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         linha = "Nome do Titular: " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
@@ -178,11 +177,11 @@ public class File {
     public static void comprovanteTransferencia(String path, Usuario usuario, Conta numConta, double vlrTransferencia, Conta numContaDestino) throws IOException {
 
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        String linha = "*********************Transferência*********************";
+        String linha = "************************Transferência************************";
         buffWrite.append(linha).append("\n\n\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         linha = "Nome do Titular (Conta Origem): " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
@@ -190,10 +189,13 @@ public class File {
         linha = "CPF do Titular (Conta Origem): " + usuario.getCpf();
         buffWrite.append("\t").append(linha).append("\n");
 
+        linha = "Conta (Origem): " + numConta.getNumeroDaConta();
+        buffWrite.append("\t").append(linha).append("\n");
+
         linha = "Agência (Origem): " + usuario.getAgencia();
         buffWrite.append("\t").append(linha).append("\n");
 
-        linha = "Conta (Origem): " + numConta.getNumeroDaConta();
+        linha = "Agência (Origem): " + numConta.getAgencia();
         buffWrite.append("\t").append(linha).append("\n\n");
 
         linha = "Nome do Titular (Conta Destino): " + numContaDestino.getNomeCompletoCliente();
@@ -206,7 +208,7 @@ public class File {
         buffWrite.append("\t").append(linha).append("\n");
 
         linha = "Agência (Destino): " + numContaDestino.getAgencia();
-        buffWrite.append("\t").append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         linha = "Valor Transferido: R$" + vlrTransferencia;
         buffWrite.append("\t").append(linha).append("\n");
@@ -224,11 +226,14 @@ public class File {
     public static void pegaContasAgencia(int numAgencia, String path) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         int totalContas = 0;
+
         System.out.println("*****************Relatório de Contas da Agência " + numAgencia + "******************\n\n");
         String linha = "*****************Relatório de Contas da Agência " + numAgencia + "******************\n\n";
         buffWrite.append(linha).append("\n");
+
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t\t").append(linha).append("\n\n");
+
         for (Conta conta : File.getMapConta().values()) {
             if (conta.getAgencia() == numAgencia) {
                 totalContas++;
@@ -250,8 +255,8 @@ public class File {
         linha = "\n\t\tTotal de contas registradas na agência: " + totalContas;
         buffWrite.append(linha).append("\n\n");
 
-        System.out.println("\n***************************Fim do Relatório****************************");
-        linha = "\n***************************Fim do Relatório****************************";
+        System.out.println("\n**************************Fim do Relatório***************************");
+        linha = "\n**************************Fim do Relatório***************************";
         buffWrite.append("\n\n").append(linha);
 
         linha = logoPinguinP();
@@ -269,7 +274,7 @@ public class File {
         buffWrite.append(linha).append("\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t\t\t\t").append(linha).append("\n\n");
 
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
         double totalT = totalM + Conta.getTarifa();
@@ -281,8 +286,8 @@ public class File {
         linha = "\t\t\tValor do Capital Total do Banco " + new DecimalFormat("#,##0.00").format(totalSoma);
         buffWrite.append(linha).append("\n");
 
-        System.out.println("\n***************************Fim do Relatório****************************");
-        linha = "\n***************************Fim do Relatório****************************";
+        System.out.println("\n********************************Fim do Relatório***********************************");
+        linha = "\n********************************Fim do Relatório************************************";
         buffWrite.append("\n\n").append(linha);
 
         linha = logoPinguinP();
@@ -299,7 +304,7 @@ public class File {
         buffWrite.append(linha).append("\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
         double totalT = totalM + Conta.getTarifa();
@@ -328,12 +333,12 @@ public class File {
 
     public static void nomesOrdemAlfabetica(String path) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        System.out.println("*****************Relatório de Clientes em Ordem Alfabética*****************\n\n");
-        String linha = "*****************Relatório de Clientes em Ordem Alfabética*****************\n\n";
+        System.out.println("****************Relatório de Clientes em Ordem Alfabética****************\n\n");
+        String linha = "****************Relatório de Clientes em Ordem Alfabética****************\n\n";
         buffWrite.append(linha).append("\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t\t\t").append(linha).append("\n\n");
 
         List<Usuario> mapValues = new ArrayList<>(getMapUsuario().values());
 
@@ -341,7 +346,7 @@ public class File {
 
         for (Usuario p : mapValues) {
             System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia());
-            linha = "\t\t\tNome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia();
+            linha = "\tNome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia();
             buffWrite.append(linha).append("\n");
         }
 
@@ -357,20 +362,20 @@ public class File {
 
     public static void relatorioDeSaldo(Usuario usuario, Conta conta, String path) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        System.out.println("*****************Relatório de Saldo da Conta*****************\n\n");
-        String linha = "*****************Relatório de Saldo da Conta*****************\n\n";
+        System.out.println("********************Relatório de Saldo da Conta********************\n\n");
+        String linha = "********************Relatório de Saldo da Conta********************\n\n";
         buffWrite.append(linha).append("\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         System.out.println("Saldo em conta");
         linha = "Saldo em conta";
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n");
 
-        System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo()));
-        linha = "O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo());
-        buffWrite.append(linha).append("\n");
+        System.out.println("O saldo atual de " + usuario.getNome() + " na conta " + conta.getTipoConta() + " é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo()));
+        linha = "O saldo atual de " + usuario.getNome() + " na conta " + conta.getTipoConta() + " é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo());
+        buffWrite.append("\t").append(linha).append("\n");
 
         linha = logoPinguinP();
         buffWrite.append(linha).append("\n");
@@ -392,7 +397,7 @@ public class File {
         buffWrite.append(linha).append("\n\n");
 
         linha = dataTela();
-        buffWrite.append(linha).append("\n");
+        buffWrite.append("\t").append(linha).append("\n\n");
 
         System.out.println("O rendimento estimado de R$ " + valor + " em " + dias + " dias é de R$ " + new DecimalFormat("#,##0.00").format(rendimento));
         linha = "O rendimento estimado de R$ " + valor + " em " + dias + " dias é de R$ " + new DecimalFormat("#,##0.00").format(rendimento);

@@ -25,7 +25,7 @@ public class SistemaInterno {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
         System.out.println(File.logoPinguinP());
-        Thread.sleep(5000);
+        Thread.sleep(2500);
         limpaTela(20);
 
         login();

@@ -13,20 +13,12 @@ public class Gerente extends Funcionario {
 
     }
 
-    public int getIdAgencia() {
-        return idAgencia;
-    }
-
-    public void setIdAgencia(int idAgencia) {
-        this.idAgencia = idAgencia;
-    }
-
     @Override
     public String toString() {
         return "Gerente: \nNome: " + getNome() +
                 "\nSalario: " + getSalario() +
                 "\nIdAgencia: " + idAgencia +
-                "\nNome: " + nome +
+                "\nNome: " + getNome() +
                 "\nId: " + getId() +
                 "\nCPF: " + getCpf() +
                 "\nTipo: " + getTipo() +

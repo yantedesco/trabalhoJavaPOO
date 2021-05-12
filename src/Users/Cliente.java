@@ -13,7 +13,7 @@ public class Cliente extends Usuario {
 
     @Override
     public String toString() {
-        return "Cliente: \n[Nome: " + nome +
+        return "Cliente: \n[Nome: " + getNome() +
                 "\nId: " + getId() +
                 "\nCpf: " + getCpf() +
                 "\nTipo: " + getTipo() +
