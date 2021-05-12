@@ -18,6 +18,7 @@ public enum UsuarioTipoEnum {
     public String getTipo() {
         return this.tipo;
     }
+
     public int getId() {
         return this.id;
     }

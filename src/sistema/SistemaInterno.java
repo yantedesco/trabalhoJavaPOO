@@ -16,6 +16,11 @@ public class SistemaInterno {
     Relatorio rel = new Relatorio();
     File file = new File();
 
+    public static void limpaTela(int numeroLinhas) {
+        for (int i = 0; i < numeroLinhas; i++) {
+            System.out.println("\n");
+        }
+    }
 
     // menu principal
     public void menuPrincipal() throws InterruptedException, IOException {
@@ -80,8 +85,7 @@ public class SistemaInterno {
         }
     }
 
-
-    // menu operações de conta 
+    // menu operações de conta
     public void menuOpConta(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException, NullPointerException {
         int opcao;
         do {
@@ -104,8 +108,7 @@ public class SistemaInterno {
                     try {
                         contaUsuario.sacar(valorSaque);
                         File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorSaque);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
                     break;
@@ -118,7 +121,7 @@ public class SistemaInterno {
                     try {
                         contaUsuario.depositar(valorDeposito);
                         File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorDeposito);
-                    } catch (NullPointerException e){
+                    } catch (NullPointerException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -134,7 +137,7 @@ public class SistemaInterno {
                     try {
                         contaUsuario.transfere(contaDest, valorTransf);
                         File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
-                    } catch (NullPointerException e){
+                    } catch (NullPointerException e) {
                         System.out.println(e.getMessage());
                     }
 
@@ -152,7 +155,6 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-
 
     // menu cliente
     public void menuCliente(Usuario usuario, Conta contaCliente) throws InterruptedException, IOException {
@@ -186,7 +188,6 @@ public class SistemaInterno {
 
     }
 
-
     //menu relatorios cliente
     public void menuRelatorioCliente(Usuario usuario, Conta contaCliente) throws InterruptedException, IOException {
         int opcao;
@@ -204,12 +205,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    File.relatorioDeSaldo(usuario, contaCliente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaCliente.getNumeroDaConta()+".txt");
-                	break;
+                    File.relatorioDeSaldo(usuario, contaCliente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta() + ".txt");
+                    break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaCliente.getNumeroDaConta()+".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta() + ".txt");
                     break;
 
                 case 3:
@@ -238,7 +239,6 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-
 
     // menu gerente
     public void menuGerente(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
@@ -290,12 +290,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                	File.relatorioDeSaldo(usuario, contaGerente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaGerente.getNumeroDaConta()+".txt");
-                	break;
+                    File.relatorioDeSaldo(usuario, contaGerente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta() + ".txt");
+                    break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaGerente.getNumeroDaConta()+".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta() + ".txt");
                     break;
 
                 case 3:
@@ -310,7 +310,7 @@ public class SistemaInterno {
                 case 4:
                     //				Relatório de contas na mesma agência em que este gerente trabalha
 
-                    File.pegaContasAgencia(usuario.getAgencia(), "./temp/relatorioGerenteAg/"+usuario.getAgencia()+".txt");
+                    File.pegaContasAgencia(usuario.getAgencia(), "./temp/relatorioGerenteAg/" + usuario.getAgencia() + ".txt");
 
                     break;
 
@@ -330,7 +330,6 @@ public class SistemaInterno {
         } while (opcao != 0);
 
     }
-
 
     // menu diretor
     public void menuDiretor(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
@@ -365,7 +364,6 @@ public class SistemaInterno {
 
     }
 
-
     // menu relatorio diretor
     public void menuRelatorioDiretor(Usuario usuario, Conta contaDiretor) throws InterruptedException, IOException {
         int opcao;
@@ -385,12 +383,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                	File.relatorioDeSaldo(usuario, contaDiretor, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaDiretor.getNumeroDaConta()+".txt");
-                	break;
+                    File.relatorioDeSaldo(usuario, contaDiretor, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta() + ".txt");
+                    break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaDiretor.getNumeroDaConta()+".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta() + ".txt");
                     break;
 
                 case 3:
@@ -403,13 +401,13 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                	File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt" );
+                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt");
                     break;
 
                 case 5:
                     System.out.print("Informe o número da agência para consulta: ");
                     int agencia = sc.nextInt();
-                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/"+agencia+".txt" );
+                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/" + agencia + ".txt");
                     break;
 
                 case 6:
@@ -483,12 +481,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                	File.relatorioDeSaldo(usuario, contaPresidente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaPresidente.getNumeroDaConta()+".txt");
-                	break;
+                    File.relatorioDeSaldo(usuario, contaPresidente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta() + ".txt");
+                    break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CONTA;
-                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaPresidente.getNumeroDaConta()+".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta() + ".txt");
                     break;
 
                 case 3:
@@ -501,18 +499,18 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                	File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt" );
+                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt");
                     break;
 
                 case 5:
                     System.out.print("Informe o número da agência para consulta: ");
                     int agencia = sc.nextInt();
-                    File.pegaContasAgencia(agencia, "./temp/relatorioPresidenteAg/"+agencia+".txt" );
+                    File.pegaContasAgencia(agencia, "./temp/relatorioPresidenteAg/" + agencia + ".txt");
                     break;
 
                 case 6:
                     // 			RELATORIO TOTAL DE CAPITAL // Ricardo vai colocar data
-                	File.capitalTotal("./temp/relatorioCapitalTotal/BancoDosPinguins.txt");
+                    File.capitalTotal("./temp/relatorioCapitalTotal/BancoDosPinguins.txt");
                     break;
 
                 case 7:
@@ -553,13 +551,6 @@ public class SistemaInterno {
         }
         return null;
     }
-    
-    public static void limpaTela(int numeroLinhas){
-        for(int i = 0; i < numeroLinhas; i++){
-            System.out.println("\n");
-        }
-    }
-
 
     public void menuPorTipo(Usuario usuario, Conta contaUsuario) throws InterruptedException, IOException {
         if (usuario.getTipo().equalsIgnoreCase("diretor")) {
@@ -574,9 +565,7 @@ public class SistemaInterno {
     }
 
 
-
-
-    }
+}
 
 
 

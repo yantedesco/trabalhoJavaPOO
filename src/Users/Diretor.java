@@ -1,12 +1,13 @@
 package Users;
 
 
-public class Diretor extends Funcionario{
-	
-	public Diretor() {}
-    
-    public Diretor (String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario) {
-    	super(nome, id, cpf, tipo, senha, agencia, numeroConta, salario);
+public class Diretor extends Funcionario {
+
+    public Diretor() {
+    }
+
+    public Diretor(String nome, int id, String cpf, String tipo, String senha, int agencia, int numeroConta, double salario) {
+        super(nome, id, cpf, tipo, senha, agencia, numeroConta, salario);
     }
 
     @Override
@@ -19,6 +20,6 @@ public class Diretor extends Funcionario{
                 "\nTipo: " + getTipo() +
                 "\nSenha: " + getSenha() +
                 "\nAgencia: " + getAgencia() +
-                "\nNumeroConta: " + getNumeroConta() +"\n";
+                "\nNumeroConta: " + getNumeroConta() + "\n";
     }
 }

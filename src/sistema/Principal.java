@@ -1,4 +1,3 @@
-
 package sistema;
 
 
@@ -9,16 +8,14 @@ import java.io.IOException;
 public class Principal {
 
 
-
     public static void main(String[] args) throws InterruptedException, IOException {
-    	
 
 
         File.hashMapFromFileTextUsuario(File.getPathBasico() +
-                "lista"+ File.getEXTENSAO());
+                "lista" + File.getEXTENSAO());
 
         File.hashMapFromFileTextContas(File.getPathBasico() +
-                "contas"+ File.getEXTENSAO());
+                "contas" + File.getEXTENSAO());
 
 //        System.out.println(File.getMapConta());
 //        System.out.println("\n");
@@ -33,7 +30,6 @@ public class Principal {
         sistema.menuPrincipal();
 //        sistema.menuPrincipal();
         //Olá
-
 
 
     }

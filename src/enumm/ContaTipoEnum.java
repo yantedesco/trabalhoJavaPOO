@@ -15,6 +15,7 @@ public enum ContaTipoEnum {
     public String getTipo() {
         return this.tipo;
     }
+
     public int getId() {
         return this.id;
     }
