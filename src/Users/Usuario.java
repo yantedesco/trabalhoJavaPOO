@@ -1,5 +1,7 @@
 package Users;
 
+import exceptions.UsuarioException;
+
 public abstract class Usuario {
     protected String nome;
     private int id;
@@ -53,4 +55,11 @@ public abstract class Usuario {
     public int getNumeroConta() {
         return numeroConta;
     }
+
+	public void setId(int id) throws UsuarioException {
+		if (id <= 0)
+			throw new UsuarioException("O Id do usuário não pode ser zero ou número negativo");
+		this.id = id;		
+	}
+    
 }
