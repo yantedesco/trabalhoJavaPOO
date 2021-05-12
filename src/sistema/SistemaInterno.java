@@ -3,7 +3,6 @@ package sistema;
 import Users.Usuario;
 import armazenamento.File;
 import banco.Conta;
-import banco.Relatorio;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -13,7 +12,7 @@ public class SistemaInterno {
 
 
     Scanner sc = new Scanner(System.in);
-    Relatorio rel = new Relatorio();
+
 
     public static void limpaTela(int numeroLinhas) {
         for (int i = 0; i < numeroLinhas; i++) {
@@ -115,7 +114,7 @@ public class SistemaInterno {
                     double valorSaque = sc.nextDouble();
                     try {
                         contaUsuario.sacar(valorSaque);
-                        File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorSaque);
+                        File.comprovanteSaque("./temp/comprovanteDeSaque/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + File.dataPath() + ".txt", usuario, contaUsuario, valorSaque);
                     } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
@@ -128,7 +127,7 @@ public class SistemaInterno {
                     double valorDeposito = sc.nextDouble();
                     try {
                         contaUsuario.depositar(valorDeposito);
-                        File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorDeposito);
+                        File.comprovanteDeposito("./temp/comprovanteDeDeposito/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + File.dataPath() + ".txt", usuario, contaUsuario, valorDeposito);
                     } catch (NullPointerException e) {
                         System.out.println(e.getMessage());
                     }
@@ -144,7 +143,7 @@ public class SistemaInterno {
                     Conta contaDest = pegaConta(cpfDestino);
                     try {
                         contaUsuario.transfere(contaDest, valorTransf);
-                        File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + Conta.getTotalMovimentacoes() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
+                        File.comprovanteTransferencia("./temp/comprovanteDeTransferencia/" + usuario.getNome() + "_" + usuario.getCpf() + "_" + File.dataPath() + ".txt", usuario, contaUsuario, valorTransf, contaDest);
                     } catch (NullPointerException e) {
                         System.out.println(e.getMessage());
                     }
@@ -218,12 +217,12 @@ public class SistemaInterno {
             opcao = sc.next();
             switch (opcao) {
                 case "1":
-                    File.relatorioDeSaldo(usuario, contaCliente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta() + ".txt");
+                    File.relatorioDeSaldo(usuario, contaCliente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta()+ "_" +File.dataPath()+ ".txt");
                     break;
 
                 case "2":
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta() + ".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaCliente.getNumeroDaConta()+ "_" +File.dataPath()+".txt");
                     break;
 
                 case "3":
@@ -232,7 +231,7 @@ public class SistemaInterno {
                     double valor = sc.nextDouble();
                     System.out.print("Qual a duração do investimento? ");
                     int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
+                    File.relatorioSimulacaoRendimento(valor, dias, "./temp/relatorioSimulacaoRendimento/" + usuario.getNome() + "_"+ File.dataPath()+ ".txt" );
                     break;
                 case "4":
                     menuPorTipo(usuario, contaCliente);
@@ -307,12 +306,12 @@ public class SistemaInterno {
             opcao = sc.next();
             switch (opcao) {
                 case "1":
-                    File.relatorioDeSaldo(usuario, contaGerente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta() + ".txt");
+                    File.relatorioDeSaldo(usuario, contaGerente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta()+ "_" +File.dataPath()+ ".txt");
                     break;
 
                 case "2":
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta() + ".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaGerente.getNumeroDaConta()+ "_" +File.dataPath()+ ".txt");
                     break;
 
                 case "3":
@@ -321,13 +320,13 @@ public class SistemaInterno {
                     double valor = sc.nextDouble();
                     System.out.print("Qual a duração do investimento? ");
                     int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
+                    File.relatorioSimulacaoRendimento(valor, dias, "./temp/relatorioSimulacaoRendimento/" + usuario.getNome() + "_"+ File.dataPath()+ ".txt" );
                     break;
 
                 case "4":
                     //				Relatório de contas na mesma agência em que este gerente trabalha
 
-                    File.pegaContasAgencia(usuario.getAgencia(), "./temp/relatorioGerenteAg/" + usuario.getAgencia() + ".txt");
+                    File.pegaContasAgencia(usuario.getAgencia(), "./temp/relatorioGerenteAg/" + usuario.getAgencia()+ "_" + File.dataPath()+ ".txt");
 
                     break;
 
@@ -404,12 +403,12 @@ public class SistemaInterno {
             opcao = sc.next();
             switch (opcao) {
                 case "1":
-                    File.relatorioDeSaldo(usuario, contaDiretor, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta() + ".txt");
+                    File.relatorioDeSaldo(usuario, contaDiretor, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta()+ "_" +File.dataPath()+ ".txt");
                     break;
 
                 case "2":
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta() + ".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaDiretor.getNumeroDaConta()+ "_" +File.dataPath()+".txt");
                     break;
 
                 case "3":
@@ -418,17 +417,17 @@ public class SistemaInterno {
                     double valor = sc.nextDouble();
                     System.out.print("Qual a duração do investimento? ");
                     int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
+                    File.relatorioSimulacaoRendimento(valor, dias, "./temp/relatorioSimulacaoRendimento/" + usuario.getNome() + "_"+ File.dataPath()+ ".txt" );
                     break;
 
                 case "4":
-                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt");
+                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica"+ File.dataPath() +".txt" );
                     break;
 
                 case "5":
                     System.out.print("Informe o número da agência para consulta: ");
                     int agencia = sc.nextInt();
-                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/" + agencia + ".txt");
+                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/" + agencia+ "_" +File.dataPath()+ ".txt");
                     break;
 
                 case "6":
@@ -506,12 +505,12 @@ public class SistemaInterno {
             opcao = sc.next();
             switch (opcao) {
                 case "1":
-                    File.relatorioDeSaldo(usuario, contaPresidente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta() + ".txt");
+                    File.relatorioDeSaldo(usuario, contaPresidente, "./temp/relatorioSaldo/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta()+ "_" + File.dataPath()+".txt");
                     break;
 
                 case "2":
                     //				RELATORIO TRIBUTAÇÃO CONTA;
-                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta() + ".txt");
+                    File.relatorioTributacao("./temp/relatorioTribut/" + usuario.getNome() + "_" + contaPresidente.getNumeroDaConta()+ "_" +File.dataPath()+".txt");
                     break;
 
                 case "3":
@@ -520,22 +519,22 @@ public class SistemaInterno {
                     double valor = sc.nextDouble();
                     System.out.print("Qual a duração do investimento? ");
                     int dias = sc.nextInt();
-                    rel.simulaPoupanca(valor, dias);
+                    File.relatorioSimulacaoRendimento(valor, dias, "./temp/relatorioSimulacaoRendimento/" + usuario.getNome() + "_" + File.dataPath()+ ".txt" );
                     break;
 
                 case "4":
-                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt");
+                    File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica" + File.dataPath() +".txt");
                     break;
 
                 case "5":
                     System.out.print("Informe o número da agência para consulta: ");
                     int agencia = sc.nextInt();
-                    File.pegaContasAgencia(agencia, "./temp/relatorioPresidenteAg/" + agencia + ".txt");
+                    File.pegaContasAgencia(agencia, "./temp/relatorioPresidenteAg/" + agencia + "_" + File.dataPath()+".txt");
                     break;
 
                 case "6":
                     // 			RELATORIO TOTAL DE CAPITAL // Ricardo vai colocar data
-                    File.capitalTotal("./temp/relatorioCapitalTotal/BancoDosPinguins.txt");
+                    File.capitalTotal("./temp/relatorioCapitalTotal/BancoDosPinguins"+File.dataPath() +".txt");
                     break;
 
                 case "7":

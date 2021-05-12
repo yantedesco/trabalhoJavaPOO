@@ -5,11 +5,14 @@ import Users.*;
 import banco.Conta;
 import banco.ContaCorrente;
 import banco.ContaPoupanca;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import enumm.ContaTipoEnum;
 import enumm.UsuarioTipoEnum;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -109,6 +112,9 @@ public class File {
         String linha = "******************Depósito******************";
         buffWrite.append(linha).append("\n\n\n");
 
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
         linha = "Nome do Titular: " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
 
@@ -141,6 +147,9 @@ public class File {
         String linha = "******************Saque******************";
         buffWrite.append(linha).append("\n\n\n");
 
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
         linha = "Nome do Titular: " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
 
@@ -171,6 +180,9 @@ public class File {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         String linha = "*********************Transferência*********************";
         buffWrite.append(linha).append("\n\n\n");
+
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
 
         linha = "Nome do Titular (Conta Origem): " + numConta.getNomeCompletoCliente();
         buffWrite.append("\t").append(linha).append("\n");
@@ -215,6 +227,8 @@ public class File {
         System.out.println("*****************Relatório de Contas da Agência " + numAgencia + "******************\n\n");
         String linha = "*****************Relatório de Contas da Agência " + numAgencia + "******************\n\n";
         buffWrite.append(linha).append("\n");
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
         for (Conta conta : File.getMapConta().values()) {
             if (conta.getAgencia() == numAgencia) {
                 totalContas++;
@@ -254,6 +268,9 @@ public class File {
         String linha = "*****************Relatório de Capital Total do Banco dos Pinguins********************\n\n";
         buffWrite.append(linha).append("\n");
 
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
         double totalT = totalM + Conta.getTarifa();
         for (Conta conta : getMapConta().values()) {
@@ -279,6 +296,9 @@ public class File {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         System.out.println("***********************Relatório de Tributação de Conta***********************\n\n");
         String linha = "***********************Relatório de Tributação de Conta***********************\n\n";
+        buffWrite.append(linha).append("\n");
+
+        linha = dataTela();
         buffWrite.append(linha).append("\n");
 
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
@@ -312,6 +332,9 @@ public class File {
         String linha = "*****************Relatório de Clientes em Ordem Alfabética*****************\n\n";
         buffWrite.append(linha).append("\n");
 
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
         List<Usuario> mapValues = new ArrayList<>(getMapUsuario().values());
 
         mapValues.sort(Comparator.comparing(Usuario::getNome));
@@ -338,6 +361,9 @@ public class File {
         String linha = "*****************Relatório de Saldo da Conta*****************\n\n";
         buffWrite.append(linha).append("\n");
 
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
         System.out.println("Saldo em conta");
         linha = "Saldo em conta";
         buffWrite.append(linha).append("\n");
@@ -354,6 +380,40 @@ public class File {
         buffWrite.append("\n\n").append(linha);
 
         buffWrite.close();
+    }
+
+    public static void relatorioSimulacaoRendimento(Double valor, int dias, String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        double rend = 0.00533333;
+        double rendimento = rend / 30 * valor * dias;
+
+        System.out.println("***************************Simulação de Rendimento (POUPANÇA)****************************");
+        String linha = "***************************Simulação de Rendimento (POUPANÇA)****************************";
+        buffWrite.append(linha).append("\n\n");
+
+        linha = dataTela();
+        buffWrite.append(linha).append("\n");
+
+        System.out.println("O rendimento estimado de R$ " + valor + " em " + dias + " dias é de R$ " + new DecimalFormat("#,##0.00").format(rendimento));
+        linha = "O rendimento estimado de R$ " + valor + " em " + dias + " dias é de R$ " + new DecimalFormat("#,##0.00").format(rendimento);
+        buffWrite.append(linha).append("\n\n");
+
+        System.out.println("\n***************************Fim do Relatório****************************");
+        linha = "\n***************************Fim do Relatório****************************";
+        buffWrite.append("\n\n").append(linha);
+
+        buffWrite.close();
+
+    }
+    public static String dataPath(){
+        final DateFormat df = new SimpleDateFormat("dd_MM_yyyy_hh-mm-ss");
+        Calendar c = Calendar.getInstance();
+        return (df.format(c.getTime()));
+    }
+    public static String dataTela(){
+        final DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        Calendar c = Calendar.getInstance();
+        return (df.format(c.getTime()));
     }
 
 
