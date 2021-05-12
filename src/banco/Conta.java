@@ -6,6 +6,7 @@ public abstract class Conta {
 
     protected static double taxaMovimentacao = 0.10;
     private static int totalMovimentacoes;
+    private static int totalTransferencia;
     private static double tarifa = 15;
     public String tipoConta;
     private int numeroDaConta;
@@ -13,6 +14,8 @@ public abstract class Conta {
     private String nomeCompletoCliente;
     private String cpfTitular;
     private double saldo;
+    private static final double taxaTransferencia = 0.20;
+
 
 
     public Conta() {
@@ -57,7 +60,7 @@ public abstract class Conta {
             System.out.println("Seu saldo é insuficiente!!!");
             return false;
         } else {
-            totalMovimentacoes++;
+            totalTransferencia++;
             this.saldo = this.saldo - valor;
             this.saldo = this.saldo - taxaMovimentacao;    // taxa cobrada por saque
             System.out.println("Saque realizado com sucesso!!!");
@@ -82,9 +85,8 @@ public abstract class Conta {
                 return false;
             } else {
                 this.saldo = this.saldo - valor;
-                this.saldo = this.saldo - taxaMovimentacao;
+                this.saldo = this.saldo - taxaTransferencia;
                 destino.saldo = destino.saldo + valor;
-                this.saldo = this.saldo - taxaMovimentacao;
                 totalMovimentacoes++;
                 System.out.println("Transferência realizada com sucesso!!!");
                 return true;
@@ -133,5 +135,12 @@ public abstract class Conta {
     public int getAgencia() {
         return agencia;
     }
-    
+
+    public static int getTotalTransferencia() {
+        return totalTransferencia;
+    }
+
+    public static double getTaxaTransferencia() {
+        return taxaTransferencia;
+    }
 }

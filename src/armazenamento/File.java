@@ -277,10 +277,11 @@ public class File {
         buffWrite.append("\t\t\t\t").append(linha).append("\n\n");
 
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
-        double totalT = totalM + Conta.getTarifa();
+        double totalS = (Conta.getTotalTransferencia() * Conta.getTaxaTransferencia());
+        double totalT = totalS + totalM + Conta.getTarifa();
+
         for (Conta conta : getMapConta().values()) {
             totalSoma = totalSoma + conta.getSaldo() + totalT;
-
         }
         System.out.println("\t\tValor do Capital Total do Banco: R$ " + new DecimalFormat("#,##0.00").format(totalSoma));
         linha = "\t\t\tValor do Capital Total do Banco " + new DecimalFormat("#,##0.00").format(totalSoma);
@@ -307,14 +308,19 @@ public class File {
         buffWrite.append("\t").append(linha).append("\n\n");
 
         double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
-        double totalT = totalM + Conta.getTarifa();
+        double totalS = (Conta.getTotalTransferencia() * Conta.getTaxaTransferencia());
+        double totalT = totalS + totalM + Conta.getTarifa();
 
         System.out.println("\t\tO valor da tarifa cobrada é de R$ " + new DecimalFormat("#,##0.00").format(Conta.getTarifa()));
         linha = "\t\t\tO valor da tarifa cobrada é de R$ " + new DecimalFormat("#,##0.00").format(Conta.getTarifa());
         buffWrite.append(linha).append("\n");
 
-        System.out.println("\t\tO valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalM));
+        System.out.println("\t\tO valor total das taxas de movimentações de saldo e depósito é de R$ " + new DecimalFormat("#,##0.00").format(totalM));
         linha = "\t\t\tO valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalM);
+        buffWrite.append(linha).append("\n");
+
+        System.out.println("\t\tO valor total das taxas de transferência é de R$ " + new DecimalFormat("#,##0.00").format(totalS));
+        linha = "\t\t\tO valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalS);
         buffWrite.append(linha).append("\n");
 
         System.out.println("\t\tO total das tributações até agora é de = R$ " + new DecimalFormat("#,##0.00").format(totalT));
