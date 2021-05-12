@@ -13,8 +13,8 @@ public abstract class Conta {
 	private String cpfTitular;
     private double saldo;
     private static int totalMovimentacoes;
-    private double tarifa = 15;
-    protected double taxaMovimentacao=0.10;
+    private static double tarifa = 15;
+    protected static double taxaMovimentacao=0.10;
     public String tipoConta;
 
 
@@ -129,7 +129,7 @@ public abstract class Conta {
 
 
 
-	public double getTarifa() {
+	public static double getTarifa() {
 		return tarifa;
 	}
 	public void setTarifa(double tarifa) {
@@ -187,5 +187,11 @@ public abstract class Conta {
 		this.agencia = agencia;
 	}
 
+	public static double getTaxaMovimentacao() {
+		return taxaMovimentacao;
+	}
+	
+	
 
+	
 }

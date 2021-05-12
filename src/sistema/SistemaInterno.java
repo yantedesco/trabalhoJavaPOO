@@ -14,14 +14,16 @@ public class SistemaInterno {
 
     Scanner sc = new Scanner(System.in);
     Relatorio rel = new Relatorio();
+    File file = new File();
 
 
     // menu principal
     public void menuPrincipal() throws InterruptedException, IOException {
         //String nome, int id, String cpf, String tipo, String senha, int agencia
 
-        File.logoPinguinP();
+        System.out.println(File.logoPinguinP());
         Thread.sleep(5000);
+        limpaTela(20);
 
         login();
     }
@@ -202,13 +204,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta");
-                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaCliente.getSaldo()));
-                    break;
+                    File.relatorioDeSaldo(usuario, contaCliente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaCliente.getNumeroDaConta()+".txt");
+                	break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaCliente); //tratar com erro personalizado e verificar onde tributa.
+                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaCliente.getNumeroDaConta()+".txt");
                     break;
 
                 case 3:
@@ -289,13 +290,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta");
-                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaGerente.getSaldo()));
-                    break;
+                	File.relatorioDeSaldo(usuario, contaGerente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaGerente.getNumeroDaConta()+".txt");
+                	break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaGerente);
+                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaGerente.getNumeroDaConta()+".txt");
                     break;
 
                 case 3:
@@ -385,13 +385,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta");
-                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaDiretor.getSaldo()));
-                    break;
+                	File.relatorioDeSaldo(usuario, contaDiretor, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaDiretor.getNumeroDaConta()+".txt");
+                	break;
 
                 case 2:
                     //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaDiretor);
+                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaDiretor.getNumeroDaConta()+".txt");
                     break;
 
                 case 3:
@@ -404,7 +403,7 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                    rel.nomesOrdemAlfabetica();
+                	File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt" );
                     break;
 
                 case 5:
@@ -484,13 +483,12 @@ public class SistemaInterno {
             opcao = sc.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Saldo em conta");
-                    System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(contaPresidente.getSaldo()));
-                    break;
+                	File.relatorioDeSaldo(usuario, contaPresidente, "./temp/relatorioSaldo/"+usuario.getNome()+"_"+contaPresidente.getNumeroDaConta()+".txt");
+                	break;
 
                 case 2:
-                    //				RELATORIO TRIBUTAÇÃO CC;
-                    rel.tributacao(contaPresidente);
+                    //				RELATORIO TRIBUTAÇÃO CONTA;
+                	File.relatorioTributacao("./temp/relatorioTribut/"+ usuario.getNome()+"_"+contaPresidente.getNumeroDaConta()+".txt");
                     break;
 
                 case 3:
@@ -503,18 +501,18 @@ public class SistemaInterno {
                     break;
 
                 case 4:
-                    rel.nomesOrdemAlfabetica();
+                	File.nomesOrdemAlfabetica("./temp/relatorioClientesOrdem/clientesOrdemAlfabetica.txt" );
                     break;
 
                 case 5:
                     System.out.print("Informe o número da agência para consulta: ");
                     int agencia = sc.nextInt();
-                    File.pegaContasAgencia(agencia, "./temp/relatorioDiretorAg/"+agencia+".txt" );
+                    File.pegaContasAgencia(agencia, "./temp/relatorioPresidenteAg/"+agencia+".txt" );
                     break;
 
                 case 6:
-                    // 			RELATORIO TOTAL DE CAPITAL
-                    rel.capitalTotal();
+                    // 			RELATORIO TOTAL DE CAPITAL // Ricardo vai colocar data
+                	File.capitalTotal("./temp/relatorioCapitalTotal/BancoDosPinguins.txt");
                     break;
 
                 case 7:
@@ -554,6 +552,12 @@ public class SistemaInterno {
             }
         }
         return null;
+    }
+    
+    public static void limpaTela(int numeroLinhas){
+        for(int i = 0; i < numeroLinhas; i++){
+            System.out.println("\n");
+        }
     }
 
 

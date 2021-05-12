@@ -3,14 +3,20 @@ package armazenamento;
 
 
 import Users.*;
+
 import banco.Conta;
 import banco.ContaCorrente;
 import banco.ContaPoupanca;
+import banco.Relatorio;
 import enumm.ContaTipoEnum;
 import enumm.UsuarioTipoEnum;
 
 import java.io.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -129,6 +135,10 @@ public class File {
         linha = "******************Fim do Depósito******************";
         buffWrite.append("\n\n").append(linha);
 
+        linha = logoPinguinP();
+        buffWrite.append(linha).append("\n");
+        
+        
         buffWrite.close();
     }
 
@@ -157,6 +167,10 @@ public class File {
         linha = "******************Fim do Saque******************";
         buffWrite.append("\n\n").append(linha);
 
+        linha = logoPinguinP();
+        buffWrite.append(linha).append("\n");
+        
+        
         buffWrite.close();
     }
 
@@ -195,6 +209,9 @@ public class File {
 
         linha = "********************Fim da Transferência*********************";
         buffWrite.append("\n\n").append(linha);
+        
+        linha = logoPinguinP();
+        buffWrite.append(linha).append("\n");
 
 
         buffWrite.close();
@@ -202,8 +219,8 @@ public class File {
     public static void pegaContasAgencia(int numAgencia, String path) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         int totalContas = 0;
-        System.out.println("*****************Relatório de Contas da Agência "+numAgencia+" *****************\n\n");
-        String linha = "*****************Relatório de Contas da Agência "+numAgencia+" *****************\n\n";
+        System.out.println("*****************Relatório de Contas da Agência "+numAgencia+"******************\n\n");
+        String linha = "*****************Relatório de Contas da Agência "+numAgencia+"******************\n\n";
         buffWrite.append(linha).append("\n");
         for(Conta conta : File.getMapConta().values()){
             if(conta.getAgencia() == numAgencia){
@@ -225,12 +242,127 @@ public class File {
             System.out.println("\t\t\t\tTotal de contas registradas na agência: " + totalContas);
             linha ="\n\t\tTotal de contas registradas na agência: " + totalContas;
             buffWrite.append(linha).append("\n\n");
+            
+            System.out.println("\n***************************Fim do Relatório****************************");
+            linha = "\n***************************Fim do Relatório****************************";
+            buffWrite.append("\n\n").append(linha);
+            
+            linha = logoPinguinP();
+            buffWrite.append(linha).append("\n");
+            
             buffWrite.close();
 
     }
+    
+    public static void capitalTotal(String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        double totalSoma = 0;
+        System.out.println("*****************Relatório de Capital Total do Banco dos Pinguins*****************\n\n");
+        String linha = "*****************Relatório de Capital Total do Banco dos Pinguins********************\n\n";
+        buffWrite.append(linha).append("\n");
+        
+        double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
+        double totalT = totalM + Conta.getTarifa();
+			for (Conta conta: getMapConta().values()) {
+				totalSoma = totalSoma + conta.getSaldo() + totalT;
 
+            }
+			System.out.println("\t\tValor do Capital Total do Banco: R$ "+new DecimalFormat("#,##0.00").format(totalSoma));
+			linha ="\t\t\tValor do Capital Total do Banco " + new DecimalFormat("#,##0.00").format(totalSoma);
+			buffWrite.append(linha).append("\n");
+			
+			System.out.println("\n***************************Fim do Relatório****************************");
+            linha = "\n***************************Fim do Relatório****************************";
+            buffWrite.append("\n\n").append(linha);
+			
+			linha = logoPinguinP();
+	        buffWrite.append(linha).append("\n");
+                
+	        buffWrite.close();
+    }
+    
+    
+    public static void relatorioTributacao(String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        System.out.println("***********************Relatório de Tributação de Conta***********************\n\n");
+        String linha = "***********************Relatório de Tributação de Conta***********************\n\n";
+        buffWrite.append(linha).append("\n");
+        
+        double totalM = (Conta.getTotalMovimentacoes() * Conta.getTaxaMovimentacao());
+        double totalT = totalM + Conta.getTarifa();
 
+			System.out.println("\t\tO valor da tarifa cobrada é de R$ " + new DecimalFormat("#,##0.00").format(Conta.getTarifa()));
+			linha ="\t\t\tO valor da tarifa cobrada é de R$ " + new DecimalFormat("#,##0.00").format(Conta.getTarifa());
+			buffWrite.append(linha).append("\n");
+			
+			System.out.println("\t\tO valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalM));
+			linha ="\t\t\tO valor total das taxas de movimentações é de R$ " + new DecimalFormat("#,##0.00").format(totalM);
+			buffWrite.append(linha).append("\n");
+			
+			System.out.println("\t\tO total das tributações até agora é de = R$ "+ new DecimalFormat("#,##0.00").format(totalT));
+            linha ="\t\t\tO total das tributações até agora é de = R$ "+ new DecimalFormat("#,##0.00").format(totalT);
+            buffWrite.append(linha).append("\n");
+        
+            System.out.println("\n***************************Fim do Relatório****************************");
+            linha = "\n***************************Fim do Relatório****************************";
+            buffWrite.append("\n\n").append(linha);
+            
+            linha = logoPinguinP();
+            buffWrite.append(linha).append("\n");
+            
+            buffWrite.close();
+}
+    
+    public static void nomesOrdemAlfabetica(String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        System.out.println("*****************Relatório de Clientes em Ordem Alfabética*****************\n\n");
+        String linha = "*****************Relatório de Clientes em Ordem Alfabética*****************\n\n";
+        buffWrite.append(linha).append("\n");
+        
+        List<Usuario> mapValues = new ArrayList<>(getMapUsuario().values());
 
+		mapValues.sort(Comparator.comparing(Usuario::getNome));
+
+		for (Usuario p : mapValues) {
+			System.out.println("Nome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia());
+			linha ="\t\t\tNome: " + p.getNome() + " | CPF: " + p.getCpf() + " | Agência: " + p.getAgencia();
+			buffWrite.append(linha).append("\n");
+		}
+		
+			System.out.println("\n***************************Fim do Relatório****************************");
+	        linha = "\n***************************Fim do Relatório****************************";
+	        buffWrite.append("\n\n").append(linha);
+			
+			linha = logoPinguinP();
+			buffWrite.append(linha).append("\n");
+                
+			buffWrite.close();
+    }
+    
+    public static void relatorioDeSaldo(Usuario usuario, Conta conta, String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        System.out.println("*****************Relatório de Saldo da Conta*****************\n\n");
+        String linha = "*****************Relatório de Saldo da Conta*****************\n\n";
+        buffWrite.append(linha).append("\n");
+        
+        System.out.println("Saldo em conta");
+        linha = "Saldo em conta";
+        buffWrite.append(linha).append("\n");
+        
+        System.out.println("O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo()));
+        linha = "O saldo atual de " + usuario.getNome() + " em conta é de R$ " + new DecimalFormat("#,##0.00").format(conta.getSaldo());
+        buffWrite.append(linha).append("\n");
+        
+        linha = logoPinguinP();
+        buffWrite.append(linha).append("\n");
+                
+        System.out.println("\n***************************Fim do Relatório****************************");
+        linha = "\n***************************Fim do Relatório****************************";
+        buffWrite.append("\n\n").append(linha);
+        
+        buffWrite.close();
+    }
+    
 
     public static String getPathBasico() {
         return PATH_BASICO;
@@ -240,8 +372,8 @@ public class File {
         return EXTENSAO;
     }
 
-    public static void logoPinguinP() {
-        System.out.println("" +
+    public static String logoPinguinP() {
+        return ("" +
                 "\n\n\n\n\n\n        ⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄\n" +
                 "        ⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄\n" +
                 "        ⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄\n" +
