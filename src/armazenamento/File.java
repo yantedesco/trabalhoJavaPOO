@@ -405,12 +405,14 @@ public class File {
         buffWrite.close();
 
     }
-    public static String dataPath(){
+
+    public static String dataPath() {
         final DateFormat df = new SimpleDateFormat("dd_MM_yyyy_hh-mm-ss");
         Calendar c = Calendar.getInstance();
         return (df.format(c.getTime()));
     }
-    public static String dataTela(){
+
+    public static String dataTela() {
         final DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         Calendar c = Calendar.getInstance();
         return (df.format(c.getTime()));
